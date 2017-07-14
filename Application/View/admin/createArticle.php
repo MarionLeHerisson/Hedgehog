@@ -46,12 +46,35 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="intro">Introduction</label>
-                    <textarea name="intro" id="intro" rows="3" class="form-control"></textarea>
+                    <label for="editor-intro">Introduction</label>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#editor-intro-tab">Editor</a></li>
+                        <li><a onclick="showPreview('-intro')" data-toggle="tab" href="#preview-intro-tab">Preview</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="editor-intro-tab" class="tab-pane fade in active">
+                            <textarea name="editor-intro" id="editor-intro" rows="3" class="form-control"></textarea>
+                        </div>
+                        <div id="preview-intro-tab" class="tab-pane fade in">
+                            <p id="preview-intro"></p>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="content">Content</label>
-                    <textarea name="content" id="content" rows="20" class="form-control"></textarea>
+                    <label for="editor-content">Content</label>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#editor-content-tab">Editor</a></li>
+                        <li><a onclick="showPreview('-content')" data-toggle="tab" href="#preview-content-tab">Preview</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="editor-content-tab" class="tab-pane fade in active">
+                            <textarea name="editor-content" id="editor-content" rows="20" class="form-control"></textarea>
+                        </div>
+                        <div id="preview-content-tab" class="tab-pane fade in">
+                            <p id="preview-content"></p>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

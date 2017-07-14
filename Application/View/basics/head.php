@@ -31,6 +31,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
         <script src="js/bootstrap-toggle.min.js"></script>
+        <script src="js/markdown-it.min.js"></script>
         <?php echo THISPAGE == 'admin' ? '<script src="js/admin.js"></script>' : ''; ?>
     </head>
 

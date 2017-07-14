@@ -1,3 +1,11 @@
 .page_content {
     padding-top: 50px;  /* nav height */
 }
+
+textarea {
+    margin-top: -1px;
+}
+
+a, a:hover {
+    color: #d58512;
+}
