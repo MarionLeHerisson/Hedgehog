@@ -9,13 +9,14 @@ if(isset($_POST['login']) && isset($_POST['pwd'])) {
     $login = Strings::sanitizeString($_POST['login']);
     $pwd = md5($_POST['pwd']);
 
-    require_once(BASE_PATH . 'Application/Model/usersModel.php');
+    require_once(BASE_PATH . 'Application/Model/UsersModel.php');
     $usersManager = new UsersModel();
 
     $user = $usersManager->getUser($login, $pwd)->fetch(PDO::FETCH_ASSOC);
     if(!empty($user)) {
         $_SESSION['user_type'] = $user['user_type_id'];
-        $_SESSION['login'] = $login;
+        $_SESSION['id']        = $user['id'];
+        $_SESSION['login']     = $login;
     }
 }
 

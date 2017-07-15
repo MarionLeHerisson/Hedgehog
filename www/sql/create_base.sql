@@ -8,7 +8,7 @@ CREATE TABLE article_type (
 );
 
 INSERT INTO article_type(label)
-    VALUES ('article'), ('project'), ('post');
+    VALUES ('article'), ('project'), ('post'), ('autobio');
 
 CREATE TABLE article_theme (
   id INT NOT NULL AUTO_INCREMENT,
@@ -68,7 +68,7 @@ CREATE TABLE articles (
   content TEXT NOT NULL,
   url VARCHAR(100) NOT NULL,
   status_id INT NOT NULL DEFAULT 2,
-  created_at TIMESTAMP NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   is_deleted INT NOT NULL DEFAULT 0,
 
   PRIMARY KEY (id),

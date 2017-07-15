@@ -1,8 +1,8 @@
 <?php
 
-require_once('defaultModel.php');
+require_once('DefaultModel.php');
 
-class usersModel extends DefaultModel {
+class UsersModel extends DefaultModel {
 
     protected $_name = 'users';
 
@@ -12,8 +12,8 @@ class usersModel extends DefaultModel {
      * @return PDOStatement
      */
     public function getUser($login, $pwd) {
-        $bdd = $this->connectDb();
-        $query = $bdd->prepare("SELECT user_type_id FROM " . $this->_name . "
+        $db = $this->connectDb();
+        $query = $db->prepare("SELECT id, user_type_id FROM " . $this->_name . "
                                 WHERE login = ? AND password = ?");
 
         $query->execute([$login, $pwd]);

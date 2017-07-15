@@ -25,10 +25,14 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
-            <form>
+            <form method="post" action="admin">
+                <div class="none">
+                    <input type="text" name="author_id" value="<?php echo $author_id ?>">
+                    <input type="text" name="article_id" value="<?php echo $article_id ?>">
+                </div>
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input class="form-control" type="text" id="title" name="title" placeholder="Title">
+                    <input class="form-control" type="text" id="title" name="title" placeholder="Title of new or existing article">
                 </div>
                 <div class="form-group">
                     <label for="url">Url</label>
@@ -76,6 +80,7 @@
                         </div>
                     </div>
                 </div>
+                <button type="submit">Done</button>
             </form>
         </div>
     </div>

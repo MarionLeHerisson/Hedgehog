@@ -2,6 +2,10 @@
     padding-top: 50px;  /* nav height */
 }
 
+.none {
+    display: none;
+}
+
 textarea {
     margin-top: -1px;
 }

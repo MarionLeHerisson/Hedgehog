@@ -10,14 +10,14 @@ class DefaultModel {
         }
         else {
             try {
-                $bdd = new PDO("mysql:host=" . HOSTNAME . ";dbname=" . DBNAME, DBLOGIN, DBPWD,
+                $db = new PDO("mysql:host=" . HOSTNAME . ";dbname=" . DBNAME, DBLOGIN, DBPWD,
                     array (PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
                 // set BDD content in UTF-8, adjust for your needs
             }
             catch(Exception $e) {
                 die("erreur :".$e->getMessage());
             }
-            $this->coBdd = $bdd;
+            $this->coBdd = $db;
             return $this->coBdd;
         }
     }

@@ -10,12 +10,19 @@ class AdminController {
 
     public function indexAction() {
 
+        if(isset($_POST['title'])) {
+            $this->editArticle($_POST);
+        }
+
         require_once(BASE_PATH . 'Application/View/basics/head.php');
         require_once(BASE_PATH . 'Application/View/basics/nav.php');
 
+        // If user is connected and is an admin
         if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 1) {
 
             $types = $this->getTypes();
+            $author_id = $_SESSION['id'];
+            $article_id = 0;
 
             require_once(BASE_PATH . 'Application/View/admin/admin.php');
         }
@@ -31,7 +38,7 @@ class AdminController {
      * @return String
      */
     public function getTypes() {
-        require_once(BASE_PATH . 'Application/Model/articleTypeModel.php');
+        require_once(BASE_PATH . 'Application/Model/ArticleTypeModel.php');
         $articleTypesManager = new ArticleTypeModel();
 
         $allTypes = $articleTypesManager->getAllTypes()->fetchAll();
@@ -42,5 +49,25 @@ class AdminController {
         }
 
         return $options;
+    }
+
+    /**
+     * Save an article
+     * @param array $data
+     */
+    public function editArticle($data) {
+        require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+        $articlesManager = new ArticlesModel();
+
+        $articleExists = false;
+        if($data['article_id'] != 0) {
+            $articleExists = true;
+        }
+
+        if($articleExists) {
+            $articlesManager->updateArticle($data);
+        } else {
+            $articlesManager->insertArticle($data);
+        }
     }
 }
