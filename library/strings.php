@@ -10,8 +10,8 @@ class Strings {
      * @author Marion
      */
     public static function sanitizeString($string) {
-        $string = str_replace('\'', '', trim(stripslashes($string)));
-        $string = str_replace('\"', '', $string);
+        $string = str_replace('\'', '', $string);
+        $string = str_replace('"', '', $string);
         return $string;
     }
 
@@ -34,7 +34,9 @@ class Strings {
     }
 
     /**
-     * @param $str
+     * Remove accents (handle different notations)
+     *
+     * @param string $str
      * @param string $charset
      * @return mixed|string
      * @author http://www.weirdog.com/blog/php/supprimer-les-accents-des-caracteres-accentues.html
@@ -46,5 +48,15 @@ class Strings {
         $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
         $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
         return $str;
+    }
+
+    /**
+     * Remove punctuation
+     *
+     * @param string $str
+     * @return string
+     */
+    public static function rmPunctuation($str) {
+        return preg_replace('#[,\./\\!\?;:%$£&\#()\*]#', '', $str);
     }
 }

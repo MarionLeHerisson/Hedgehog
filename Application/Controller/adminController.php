@@ -10,6 +10,9 @@ class AdminController {
 
     public function indexAction() {
 
+        if(isset($_POST['action']) && !empty($_POST['action'])) {
+            $this->Ajax($_POST);
+        }
         if(isset($_POST['title'])) {
             $this->editArticle($_POST);
         }
@@ -31,6 +34,31 @@ class AdminController {
         }
 
         require_once(BASE_PATH . 'Application/View/basics/footer.php');
+    }
+
+    /**
+     * handle ajax methods
+     *
+     * @param array $post
+     */
+    private function ajax($post) {
+        $action = $post['action'];
+        $param = [];
+
+        if(isset($post['param'])) {
+            $param = $post['param'];
+        }
+
+        require_once(BASE_PATH . 'Application/Model/Ajax/admin.php');
+        $ajaxApi = new AdminAjax();
+
+        $ajaxApi->$action($param);
+
+        switch($action) {
+            case 'createUrl' :
+                $ajaxApi->createUrl($param);
+                break;
+        }
     }
 
     /**
