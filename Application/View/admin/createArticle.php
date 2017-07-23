@@ -80,7 +80,15 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit">Done</button>
+
+                <div id="createArticle" class="none alert alert-dismissible fade in col-md-12" role="alert">
+                    <button type="button" class="close" onclick="closePopin()">
+                        <span>×</span>
+                    </button>
+                    <p id="createArticleMsg"></p>
+                </div>
+
+                <button type="button" class="btn btn-warning" id="createArticle">Done</button>
             </form>
         </div>
     </div>

@@ -11,10 +11,9 @@ class AdminController {
     public function indexAction() {
 
         if(isset($_POST['action']) && !empty($_POST['action'])) {
+            echo '<pre>';
+            die(print_r($_POST));
             $this->Ajax($_POST);
-        }
-        if(isset($_POST['title'])) {
-            $this->editArticle($_POST);
         }
 
         require_once(BASE_PATH . 'Application/View/basics/head.php');
@@ -84,8 +83,6 @@ class AdminController {
      * @param array $data
      */
     public function editArticle($data) {
-        require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
-        $articlesManager = new ArticlesModel();
 
         $articleExists = false;
         if($data['article_id'] != 0) {
@@ -93,9 +90,33 @@ class AdminController {
         }
 
         if($articleExists) {
-            $articlesManager->updateArticle($data);
+            $this->updateArticle($data);
         } else {
+            $this->createArticle($data);
+        }
+    }
+
+    /**
+     * Create an article
+     *
+     * @param array $data
+     */
+    public function createArticle($data) {
+        require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+        $articlesManager = new ArticlesModel();
+
+        if(verifTitle() && verifIntro() && verifUrl() && verifContent()) {
             $articlesManager->insertArticle($data);
         }
     }
+
+    /**
+     * Update an article
+     *
+     * @param array $data
+     */
+    public function updateArticle($data) {
+
+    }
+
 }

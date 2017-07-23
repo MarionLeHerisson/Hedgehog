@@ -1,11 +1,10 @@
 /**
- * @param label		// String - Where error message will appear
  * @param url		// String - The Controller to be called
  * @param action	// String - The method to be called
  * @param param		// Array  - parameters
  * @param callback	// Callable - Called if success
  */
-function myAjax(label, url, action, param, callback) {
+function myAjax(url, action, param, callback) {
 
     $.ajax({
         type: "POST",
@@ -14,11 +13,7 @@ function myAjax(label, url, action, param, callback) {
             action: action,
             param: param
         },
-        success: callback,
-        error: function () {
-            showMessage(label, 'Une erreur de connexion s\'est produite. Veuillez recharger la page et réessayer.' +
-                'Si l\'erreur persiste, veuillez contacter l\'équipe technique de ColiGo.', true);
-        }
+        success: callback
     });
 }
 
@@ -36,7 +31,7 @@ function closePopin() {
  */
 function showMessage(label, message, isError) {
 
-    var typeAdded ='success',
+    let typeAdded ='success',
         typeRemoved = 'danger';
     if(isError === true) {
         typeAdded = 'danger';
@@ -53,7 +48,7 @@ function showTooltip(label) {
 
 function scrollToTop() {
 
-    var body = $("html, body");
+    let body = $("html, body");
     body.animate({
             scrollTop:0
         },
@@ -63,7 +58,7 @@ function scrollToTop() {
 
 function scrollToBottom() {
 
-    var body = $("html, body");
+    let body = $("html, body");
     body.animate({
             scrollTop:2000
         },
