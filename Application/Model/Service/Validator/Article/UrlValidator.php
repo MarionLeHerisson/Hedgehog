@@ -6,6 +6,7 @@
  * Time: 22:49
  */
 
+require_once(BASE_PATH . 'Application/Model/Service/Validator/Article/DefaultValidator.php');
 class UrlValidator extends DefaultValidator {
     protected  $conf = [
         'fieldName' => 'url',

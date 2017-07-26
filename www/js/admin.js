@@ -29,28 +29,29 @@ let showPreview = function (option) {
                 article_id: $('#article_id').val(),
                 title: $('#title').val(),
                 url: $('#url').val(),
-                intro: $('#editor-intro').val(),
-                content: $('#editor-content').val(),
-                article_type: $('#type:selected').val(),
-                status_id : $('input:radio[name=online]:checked').val(),
+                editor_intro: $('#editor-intro').val(),
+                editor_content: $('#editor-content').val(),
+                article_type: $('#type').val(),
+                // article_type: $('#type :selected').val(),
+                status : $('#online').val() === 'on' ? 1 : 0,
                 author_id : $('#author_id').val()
             };
 
         myAjax(ajaxUrl, 'editArticle', data, function (data) {
             let dataObject = JSON.parse(data),	// transforms json return from php to js object
-                label = 'createArticle';
+                label = 'createArt';
 
             if(dataObject.stat === 'ok') {
-                showMessage(label, dataObject, false);
+                showMessage(label, dataObject.msg, false);
             } else if(dataObject.stat === 'ko') {
-                showMessage(label, message, true);
+                showMessage(label, dataObject.msg, true);
             }
         })
     },
 
     binds = function () {
         $('#title').on('blur', createUrl);
-        $('#createArticle').on('click', saveArticle);
+        $('#createArticle').click(saveArticle);
     };
 
 $(document).ready(function () {

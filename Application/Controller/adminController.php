@@ -11,8 +11,8 @@ class AdminController {
     public function indexAction() {
 
         if(isset($_POST['action']) && !empty($_POST['action'])) {
-            echo '<pre>';
-            die(print_r($_POST));
+//            echo '<pre>';
+//            die(print_r($_POST));
             $this->Ajax($_POST);
         }
 
@@ -57,6 +57,9 @@ class AdminController {
             case 'createUrl' :
                 $ajaxApi->createUrl($param);
                 break;
+            case 'editArticle' :
+                $ajaxApi->editArticle($param);
+                break;
         }
     }
 
@@ -76,50 +79,6 @@ class AdminController {
         }
 
         return $options;
-    }
-
-    /**
-     * Save an article
-     * @param array $data
-     */
-    public function editArticle($data) {
-
-        $articleExists = false;
-        if($data['article_id'] != 0) {
-            $articleExists = true;
-        }
-
-        if($articleExists) {
-            $this->updateArticle($data);
-        } else {
-            $this->createArticle($data);
-        }
-    }
-
-    /**
-     * Create an article
-     *
-     * @param array $data
-     */
-    public function createArticle($data) {
-        require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
-        $articlesManager = new ArticlesModel();
-
-        require_once(BASE_PATH . 'Application/Model/Service/Validator/ArticleValidator.php');
-        $articleValidator = new ArticleValidator();
-
-        if($articleValidator->validateArticle()) {
-            $articlesManager->insertArticle($data);
-        }
-    }
-
-    /**
-     * Update an article
-     *
-     * @param array $data
-     */
-    public function updateArticle($data) {
-
     }
 
 }

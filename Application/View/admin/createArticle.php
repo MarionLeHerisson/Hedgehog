@@ -27,8 +27,8 @@
         <div class="panel-body">
             <form method="post" action="admin">
                 <div class="none">
-                    <input type="text" name="author_id" value="<?php echo $author_id ?>">
-                    <input type="text" name="article_id" value="<?php echo $article_id ?>">
+                    <input type="text" id="author_id" name="author_id" value="<?php echo $author_id ?>">
+                    <input type="text" id="article_id" name="article_id" value="<?php echo $article_id ?>">
                 </div>
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -81,11 +81,11 @@
                     </div>
                 </div>
 
-                <div id="createArticle" class="none alert alert-dismissible fade in col-md-12" role="alert">
+                <div id="createArt" class="none alert alert-dismissible fade in col-md-12" role="alert">
                     <button type="button" class="close" onclick="closePopin()">
                         <span>×</span>
                     </button>
-                    <p id="createArticleMsg"></p>
+                    <p id="createArtMsg"></p>
                 </div>
 
                 <button type="button" class="btn btn-warning" id="createArticle">Done</button>

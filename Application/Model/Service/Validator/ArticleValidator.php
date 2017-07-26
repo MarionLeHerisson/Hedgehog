@@ -17,7 +17,7 @@ class ArticleValidator {
     /**
      * Verify fields of an article
      *
-     * @return boolean
+     * @return array
      */
     public function validateArticle() {
 
@@ -31,11 +31,7 @@ class ArticleValidator {
         $titleValidator->contentLength();
         $urlValidator->contentLength();
 
-        if(empty($this->errors)) {
-            return true;
-        }
-
-        return false;
+        return $urlValidator->errors;
     }
 
 }

@@ -11,24 +11,30 @@ require_once(BASE_PATH . 'Application/Model/DefaultModel.php');
 class ArticlesModel extends DefaultModel {
     protected $_name = 'articles';
 
+    /**
+     * Insert a new article
+     *
+     * @param array $data
+     * @return PDOStatement
+     */
     public function insertArticle($data) {
         $db = $this->connectDb();
         $query = $db->prepare("INSERT INTO " . $this->_name .
-            "(article_type_id, author_id, title, intro, content, url, status_id)" .
-            "VALUES ?, ?, ?, ?, ?, ?, ?;");
+            "(article_type_id, author_id, title, intro, content, url, status_id) " .
+            "VALUES (?, ?, ?, ?, ?, ?, ?);");
 
         $query->execute(
             [
-                $data['type'],
+                $data['article_type'],
                 $data['author_id'],
                 $data['title'],
-                $data['editor-intro'],
-                $data['editor-content'],
+                $data['editor_intro'],
+                $data['editor_content'],
                 $data['url'],
-                $data['online']
+                $data['status']
             ]
         );
-
+        
         return $query;
     }
 }
