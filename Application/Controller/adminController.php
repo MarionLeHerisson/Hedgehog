@@ -105,7 +105,10 @@ class AdminController {
         require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
         $articlesManager = new ArticlesModel();
 
-        if(verifTitle() && verifIntro() && verifUrl() && verifContent()) {
+        require_once(BASE_PATH . 'Application/Model/Service/Validator/ArticleValidator.php');
+        $articleValidator = new ArticleValidator();
+
+        if($articleValidator->validateArticle()) {
             $articlesManager->insertArticle($data);
         }
     }
