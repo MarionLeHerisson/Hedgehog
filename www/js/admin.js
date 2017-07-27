@@ -49,9 +49,14 @@ let showPreview = function (option) {
         })
     },
 
+    resetArticle = function () {
+        $('#formEditArticle')[0].reset();
+    },
+
     binds = function () {
         $('#title').on('blur', createUrl);
         $('#createArticle').click(saveArticle);
+        $('#resetArticle').click(resetArticle);
     };
 
 $(document).ready(function () {

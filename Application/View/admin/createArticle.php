@@ -25,7 +25,7 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
-            <form method="post" action="admin">
+            <form method="post" action="admin" id="formEditArticle">
                 <div class="none">
                     <input type="text" id="author_id" name="author_id" value="<?php echo $author_id ?>">
                     <input type="text" id="article_id" name="article_id" value="<?php echo $article_id ?>">
@@ -89,6 +89,7 @@
                 </div>
 
                 <button type="button" class="btn btn-warning" id="createArticle">Done</button>
+                <button type="button" class="btn btn-default" id="resetArticle">Reset</button>
             </form>
         </div>
     </div>
