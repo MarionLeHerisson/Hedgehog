@@ -32,7 +32,6 @@ let showPreview = function (option) {
                 editor_intro: $('#editor-intro').val(),
                 editor_content: $('#editor-content').val(),
                 article_type: $('#type').val(),
-                // article_type: $('#type :selected').val(),
                 status : $('#online').val() === 'on' ? 1 : 0,
                 author_id : $('#author_id').val()
             };

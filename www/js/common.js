@@ -46,6 +46,10 @@ function showTooltip(label) {
     $('#' + label).tooltip('show');
 }
 
+
+/**
+ * Scroll buttons
+ */
 function scrollToTop() {
 
     let body = $("html, body");
