@@ -16,10 +16,10 @@ let showPreview = function (option) {
         let title = $('#title').val();
 
         myAjax(ajaxUrl, 'createUrl', [title], function (data) {
-            let dataObject = JSON.parse(data);	// transforms json return from php to js object
+            let res = JSON.parse(data);	// transforms json return from php to js object
 
-            if(dataObject.stat === 'ok') {
-                $('#url').val(dataObject.msg);
+            if(res.stat === 'ok') {
+                $('#url').val(res.msg);
             }
         });
     },
@@ -33,7 +33,8 @@ let showPreview = function (option) {
                 editor_content: $('#editor-content').val(),
                 article_type: $('#type').val(),
                 status : $('#online').val() === 'on' ? 1 : 0,
-                author_id : $('#author_id').val()
+                author_id : $('#author_id').val(),
+                main_media : $('#main_media').val()
             };
 
         myAjax(ajaxUrl, 'editArticle', data, function (data) {
@@ -49,13 +50,58 @@ let showPreview = function (option) {
     },
 
     resetArticle = function () {
-        $('#formEditArticle')[0].reset();
+        // $('#formEditArticle')[0].reset();
+    },
+
+    showMainMedia = function () {
+        // faire apparaitre input
+    },
+
+    addMainMedia = function (event) {
+        let files = event.target.files,
+            data = new FormData(),
+            label = 'mainImg';
+
+        $.each(files, function(key, value) {
+            data.append(key, value);
+        });
+
+        $.ajax({
+            url: ajaxUrl,
+            type: 'POST',
+            data: data,
+            cache: false,
+            dataType: 'json',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function(data, textStatus, jqXHR) {
+                if(typeof data.error === 'undefined') {
+                    if(data.status === 'ko') {
+                        showMessage(label, data.msg, true);
+                    }
+                    else {
+                        $('#main_media').val(data.img);
+                        showMessage(label, data.msg, false);
+                    }
+                }
+                else {
+                    console.log('ERRORS: ' + data.error);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('ERRORS: ' + textStatus);
+            }
+        });
+
     },
 
     binds = function () {
         $('#title').on('blur', createUrl);
         $('#createArticle').click(saveArticle);
         $('#resetArticle').click(resetArticle);
+        $('#type').on('change', showMainMedia);
+        // $('#add_media').click(addMainMedia);
+        $('input[type=file]').on('change', addMainMedia);
     };
 
 $(document).ready(function () {

@@ -34,7 +34,10 @@ class ArticlesModel extends DefaultModel {
                 $data['status']
             ]
         );
+
+        $query2 = $db->prepare("SELECT LAST_INSERT_ID();");
+        $query2->execute();
         
-        return $query;
+        return $query2;
     }
 }

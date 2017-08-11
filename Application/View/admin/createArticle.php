@@ -25,10 +25,11 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
-            <form method="post" action="admin" id="formEditArticle">
+<!--            <form method="post" action="admin" id="formEditArticle" enctype="multipart/form-data">-->
                 <div class="none">
                     <input type="text" id="author_id" name="author_id" value="<?php echo $author_id ?>">
                     <input type="text" id="article_id" name="article_id" value="<?php echo $article_id ?>">
+                    <input type="text" id="main_media" name="main_media" value="<?php echo $main_media?>">
                 </div>
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -49,6 +50,19 @@
                         <?php echo $types; ?>
                     </select>
                 </div>
+                <form class="form-inline" enctype="multipart/form-data" id="form_main_media" action="admin">
+                    <div class="form-group">
+                        <label for="main_media_select">Main media</label>
+                        <input type="file" id="main_media_select" name="main_media_select">
+                    </div>
+
+                    <div id="mainImg" class="none alert alert-dismissible fade in col-md-12" role="alert">
+                        <button type="button" class="close" onclick="closePopin()">
+                            <span>×</span>
+                        </button>
+                        <p id="mainImgMsg"></p>
+                    </div>
+                </form>
                 <div class="form-group">
                     <label for="editor-intro">Introduction</label>
                     <ul class="nav nav-tabs">
@@ -90,7 +104,7 @@
 
                 <button type="button" class="btn btn-warning" id="createArticle">Done</button>
                 <button type="button" class="btn btn-default" id="resetArticle">Reset</button>
-            </form>
+<!--            </form>-->
         </div>
     </div>
 </div>

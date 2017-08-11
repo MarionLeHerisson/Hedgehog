@@ -121,10 +121,13 @@ CREATE TABLE logs (
   FOREIGN KEY(new_status) REFERENCES status(id)
 );
 
+CREATE TABLE medias (
+  id INT NOT NULL AUTO_INCREMENT,
+  src VARCHAR(255) NOT NULL,
+  article_id INT NOT NULL,
+  is_main INT DEFAULT 0,
+  is_deleted INT NOT NULL DEFAULT 0,
 
-
--- TODO
--- Gestion url articles ? sql request in index.php -> if doesn't exist, errorController->indexAction()
---                               -> but how to show url ? -> GET
--- Stockage articles -> markdown plugin ?
--- https://github.com/markdown-it/markdown-it
+  PRIMARY KEY (id),
+  FOREIGN KEY (article_id) REFERENCES articles(id)
+);

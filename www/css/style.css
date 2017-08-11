@@ -32,6 +32,9 @@ a, a:hover {
     -webkit-transition: border-radius .3s ease, color .3s ease;
     transition: border-radius .3s ease, color .3s ease;
 }
+.scroll .glyphicon {
+    top: 4px;
+}
 .backToTop {
     bottom: 2em;
 }

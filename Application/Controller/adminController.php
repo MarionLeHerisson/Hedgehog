@@ -11,9 +11,11 @@ class AdminController {
     public function indexAction() {
 
         if(isset($_POST['action']) && !empty($_POST['action'])) {
-//            echo '<pre>';
-//            die(print_r($_POST));
             $this->Ajax($_POST);
+        } else if(isset($_FILES) && !empty($_FILES)) {
+            $post['action'] = 'uploadImg';
+            $post['param'] = $_FILES[0];
+            $this->ajax($post);
         }
 
         require_once(BASE_PATH . 'Application/View/basics/head.php');
@@ -25,6 +27,7 @@ class AdminController {
             $types = $this->getTypes();
             $author_id = $_SESSION['id'];
             $article_id = 0;
+            $main_media = '';
 
             require_once(BASE_PATH . 'Application/View/admin/admin.php');
         }
@@ -52,15 +55,18 @@ class AdminController {
         $ajaxApi = new AdminAjax();
 
         $ajaxApi->$action($param);
-
-        switch($action) {
-            case 'createUrl' :
-                $ajaxApi->createUrl($param);
-                break;
-            case 'editArticle' :
-                $ajaxApi->editArticle($param);
-                break;
-        }
+//
+//        switch($action) {
+//            case 'createUrl' :
+//                $ajaxApi->createUrl($param);
+//                break;
+//            case 'editArticle' :
+//                $ajaxApi->editArticle($param);
+//                break;
+//            case 'addMainMedia' :
+//                $ajaxApi->uploadImg($param);
+//                break;
+//        }
     }
 
     /**
