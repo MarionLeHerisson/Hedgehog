@@ -41,7 +41,7 @@ class AdminAjax {
         $mediaManager = new MediasModel();
 
         $url = $articlesManager->getArticleFromUrl($data['url'])->fetchColumn();
-        
+
         if($url) {
             die(json_encode([
                 'stat'  	=> 'ko',
