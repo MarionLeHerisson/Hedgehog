@@ -40,6 +40,15 @@ class AdminAjax {
         require_once(BASE_PATH . 'Application/Model/MediasModel.php');
         $mediaManager = new MediasModel();
 
+        $url = $articlesManager->getArticleFromUrl($data['url'])->fetchColumn();
+        
+        if($url) {
+            die(json_encode([
+                'stat'  	=> 'ko',
+                'msg'	    => 'Url already exists !'
+            ]));
+        }
+
 //        require_once(BASE_PATH . 'Application/Model/Service/Validator/ArticleValidator.php');
 //        $articleValidator = new ArticleValidator();
 //
@@ -88,10 +97,10 @@ class AdminAjax {
         if($data[0] != '') {
             require_once(BASE_PATH . 'library/strings.php');
 
-            $title = Strings::unaccent(trim($data[0]));
+            $title = Strings::unaccent($data[0]);
             $title = Strings::sanitizeString($title);
             $title = Strings::rmPunctuation($title);
-            $title = str_replace(' ', '-', $title);
+            $title = str_replace(' ', '-', trim($title));
             $title = strtolower($title);
 
             do {
