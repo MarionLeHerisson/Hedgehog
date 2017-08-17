@@ -25,7 +25,8 @@ let showPreview = function (option) {
     },
 
     saveArticle = function () {
-        let data = {
+        let theme = $('#theme').val(),
+            data = {
                 article_id: $('#article_id').val(),
                 title: $('#title').val(),
                 url: $('#url').val(),
@@ -33,6 +34,7 @@ let showPreview = function (option) {
                 editor_content: $('#editor-content').val(),
                 article_type: $('#type').val(),
                 status : $('#online').val() === 'on' ? 1 : 0,
+                theme : theme === undefined ? null : theme,
                 author_id : $('#author_id').val(),
                 main_media : $('#main_media').val()
             };
@@ -51,10 +53,6 @@ let showPreview = function (option) {
 
     resetArticle = function () {
         // $('#formEditArticle')[0].reset();
-    },
-
-    showMainMedia = function () {
-        // faire apparaitre input
     },
 
     addMainMedia = function (event) {
@@ -92,18 +90,34 @@ let showPreview = function (option) {
                 console.log('ERRORS: ' + textStatus);
             }
         });
+    },
 
+    showTheme = function () {
+        let type = $('#type').val(),
+            theme = $('#theme_parent');
+
+        if(type === '1') {
+            theme.removeClass('none');
+        } else {
+            theme.addClass('none');
+        }
+    },
+
+    init = function () {
+        showTheme();
     },
 
     binds = function () {
+        let type = $('#type');
+
         $('#title').on('blur', createUrl);
         $('#createArticle').click(saveArticle);
         $('#resetArticle').click(resetArticle);
-        $('#type').on('change', showMainMedia);
-        // $('#add_media').click(addMainMedia);
+        type.on('change', showTheme);
         $('input[type=file]').on('change', addMainMedia);
     };
 
 $(document).ready(function () {
+    init();
     binds();
 });

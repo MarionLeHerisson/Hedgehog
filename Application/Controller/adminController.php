@@ -24,8 +24,9 @@ class AdminController {
         // If user is connected and is an admin
         if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 1) {
 
-            $types = $this->getTypes();
-            $author_id = $_SESSION['id'];
+            $types      = $this->getTypes();
+            $themes     = $this->getThemes();
+            $author_id  = $_SESSION['id'];
             $article_id = 0;
             $main_media = '';
 
@@ -55,18 +56,6 @@ class AdminController {
         $ajaxApi = new AdminAjax();
 
         $ajaxApi->$action($param);
-//
-//        switch($action) {
-//            case 'createUrl' :
-//                $ajaxApi->createUrl($param);
-//                break;
-//            case 'editArticle' :
-//                $ajaxApi->editArticle($param);
-//                break;
-//            case 'addMainMedia' :
-//                $ajaxApi->uploadImg($param);
-//                break;
-//        }
     }
 
     /**
@@ -77,11 +66,29 @@ class AdminController {
         require_once(BASE_PATH . 'Application/Model/ArticleTypeModel.php');
         $articleTypesManager = new ArticleTypeModel();
 
-        $allTypes = $articleTypesManager->getAllTypes()->fetchAll();
+        $allTypes = $articleTypesManager->getAllTypes()->fetchAll(PDO::FETCH_ASSOC);
         $options = '';
 
         foreach ($allTypes as $type) {
             $options .= '<option value="' . $type['id'] . '">' . $type['label'] . '</otpion>';
+        }
+
+        return $options;
+    }
+
+    /**
+     * Get article themes as HTML option tag
+     * @return string
+     */
+    public function getThemes() {
+        require_once(BASE_PATH . 'Application/Model/ThemesModel.php');
+        $themesManager = new ThemesModel();
+
+        $allThemes = $themesManager->getAllThemes()->fetchAll(PDO::FETCH_ASSOC);
+        $options = '';
+
+        foreach ($allThemes as $theme) {
+            $options .= '<option value="' . $theme['id'] . '">' . $theme['label'] . '</otpion>';
         }
 
         return $options;

@@ -20,12 +20,13 @@ class ArticlesModel extends DefaultModel {
     public function insertArticle($data) {
         $db = $this->connectDb();
         $query = $db->prepare("INSERT INTO " . $this->_name .
-            "(article_type_id, author_id, title, intro, content, url, status_id) " .
-            "VALUES (?, ?, ?, ?, ?, ?, ?);");
+            "(article_type_id, theme_id, author_id, title, intro, content, url, status_id) " .
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
 
         $query->execute(
             [
                 $data['article_type'],
+                $data['theme'],
                 $data['author_id'],
                 $data['title'],
                 $data['editor_intro'],

@@ -10,7 +10,7 @@ CREATE TABLE article_type (
 INSERT INTO article_type(label)
     VALUES ('article'), ('project'), ('post'), ('autobio');
 
-CREATE TABLE article_theme (
+CREATE TABLE themes (
   id INT NOT NULL AUTO_INCREMENT,
   label VARCHAR (50) NOT NULL,
   is_deleted INT NOT NULL DEFAULT 0,
@@ -18,7 +18,7 @@ CREATE TABLE article_theme (
   PRIMARY KEY (id)
 );
 
-INSERT INTO article_theme(label)
+INSERT INTO themes(label)
     VALUES ('programming'), ('electronics'), ('travel'), ('science'), ('social'), ('work');
 
 CREATE TABLE user_type (
@@ -59,6 +59,7 @@ VALUES ('online'), ('offline'), ('removed');
 CREATE TABLE articles (
   id INT NOT NULL AUTO_INCREMENT,
   article_type_id INT NOT NULL,
+  theme_id INT DEFAULT NULL,
   author_id INT NOT NULL DEFAULT 1,
   title VARCHAR (50) NOT NULL,
   intro VARCHAR(100) DEFAULT NULL,
@@ -73,6 +74,7 @@ CREATE TABLE articles (
 
   PRIMARY KEY (id),
   FOREIGN KEY (article_type_id) REFERENCES article_type(id),
+  FOREIGN KEY (theme_id) REFERENCES themes(id),
   FOREIGN KEY (status_id) REFERENCES status(id)
 );
 

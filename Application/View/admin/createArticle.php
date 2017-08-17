@@ -50,6 +50,12 @@
                         <?php echo $types; ?>
                     </select>
                 </div>
+                <div class="form-group none" id="theme_parent">
+                    <label for="theme">Type</label>
+                    <select class="form-control" id="theme" name="theme">
+                        <?php echo $themes; ?>
+                    </select>
+                </div>
                 <form class="form-inline" enctype="multipart/form-data" id="form_main_media" action="admin">
                     <div class="form-group">
                         <label for="main_media_select">Main media</label>
