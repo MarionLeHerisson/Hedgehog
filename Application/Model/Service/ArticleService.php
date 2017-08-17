@@ -14,13 +14,33 @@ class ArticleService {
      * @return string
      */
     public function formatArticleList($allArticles) {
-        echo '<pre>';
-        die(print_r($allArticles));
 
-        $html = '';
+        require_once(BASE_PATH . 'Application/Model/ThemesModel.php');
+        $themesManager = new ThemesModel();
+
+        $allThemes = $themesManager->getAllThemes()->fetchAll(PDO::FETCH_ASSOC);
+
+        $html  = '';
+        $currentTheme = '';
 
         foreach($allArticles as $article) {
 
+            if($article['theme_id'] - 1 >= 0) {
+                $articleTheme = $allThemes[$article['theme_id'] - 1]['label'];
+            } else {
+                $articleTheme = 'Misc';
+            }
+
+            if($currentTheme != $articleTheme) {
+                if($currentTheme != '') {
+                    $html .= '</ul>';
+                }
+                $currentTheme = $articleTheme;
+                $html .= '<h3>' . $currentTheme . '</h3>';
+                $html .= '<ul>';
+            }
+            $html .= '<li><a href="' . $article['url'] . '">' . $article['title'] . '</a>' .
+                '<span class="pull-right">' . $article['created_at'] . '</span></li>';
         }
 
         return $html;

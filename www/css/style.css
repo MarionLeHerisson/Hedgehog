@@ -1,3 +1,4 @@
+/* General */
 .page_content {
     padding-top: 50px;  /* nav height */
 }
@@ -12,6 +13,10 @@ textarea {
 
 a, a:hover {
     color: #d58512;
+}
+
+li {
+    list-style: none;
 }
 
 /* Scroll to top/bottom */

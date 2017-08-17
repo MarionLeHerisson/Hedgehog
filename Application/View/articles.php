@@ -5,8 +5,10 @@
  * Date: 08/07/2017
  * Time: 23:25
  */
+?>
 
-echo $formatedList;
+<div class="col-md-2"></div>
 
-// Titre thématique
-// Liste articles
+<div class="col-md-6">
+<?php echo $formattedList; ?>
+</div>

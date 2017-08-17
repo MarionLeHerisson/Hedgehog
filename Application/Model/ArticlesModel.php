@@ -61,10 +61,10 @@ class ArticlesModel extends DefaultModel {
      */
     public function getAllArticles($type) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT id, author_id, title, intro, url, created_at " .
+        $query = $db->prepare("SELECT id, theme_id, author_id, title, intro, url, created_at " .
                                 "FROM " . $this->_name . " " .
                                 "WHERE is_deleted = 0 AND article_type_id = ? AND status_id = 1 " .
-                                "ORDER BY created_at DESC;");
+                                "ORDER BY theme_id DESC;");
         $query->execute([$type]);
         return $query;
     }
