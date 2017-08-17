@@ -37,7 +37,7 @@ class ArticlesModel extends DefaultModel {
 
         $query2 = $db->prepare("SELECT LAST_INSERT_ID();");
         $query2->execute();
-        
+
         return $query2;
     }
 
@@ -50,6 +50,21 @@ class ArticlesModel extends DefaultModel {
         $db = $this->connectDb();
         $query = $db->prepare("SELECT url FROM " . $this->_name . " WHERE url = ?;");
         $query->execute([$url]);
+        return $query;
+    }
+
+    /**
+     * Get all articles from type
+     * @param int $type
+     * @return PDOStatement
+     */
+    public function getAllArticles($type) {
+        $db = $this->connectDb();
+        $query = $db->prepare("SELECT id, author_id, title, intro, url, created_at " .
+                                "FROM " . $this->_name . " " .
+                                "WHERE is_deleted = 0 AND article_type_id = ? AND status_id = 1 " .
+                                "ORDER BY created_at DESC;");
+        $query->execute([$type]);
         return $query;
     }
 }

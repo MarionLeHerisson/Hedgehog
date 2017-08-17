@@ -6,5 +6,7 @@
  * Time: 23:25
  */
 
+echo $formatedList;
+
 // Titre thématique
 // Liste articles
