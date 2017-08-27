@@ -43,13 +43,13 @@ class ArticlesModel extends DefaultModel {
     }
 
     /**
-     * Return an article's id from its url
+     * Return an article's data from its url
      * @param string $url
      * @return PDOStatement
      */
     public function getArticleFromUrl($url) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT url FROM " . $this->_name . " WHERE url = ?;");
+        $query = $db->prepare("SELECT article_type_id, author_id, title, intro, content, status_id FROM " . $this->_name . " WHERE url = ?;");
         $query->execute([$url]);
         return $query;
     }

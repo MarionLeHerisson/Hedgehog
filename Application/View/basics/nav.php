@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo BASE_URL ?>">Marion Le Hérisson</a>
+            <a class="navbar-brand" href="<?php echo BASE_URL ?>blog">Marion Le Hérisson</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">

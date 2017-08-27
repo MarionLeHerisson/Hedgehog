@@ -30,6 +30,10 @@ else {
     define('THISPAGE', 'blog');
 }
 
+require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+$ArticlesModel = new ArticlesModel();
+$article = $ArticlesModel->getArticleFromUrl(THISPAGE)->fetchAll(PDO::FETCH_ASSOC);
+
 // include current page controller (if it exists)
 if(file_exists(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . THISPAGE . 'Controller.php')) {
 
@@ -40,6 +44,12 @@ if(file_exists(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . 
     $controllerName = THISPAGE . 'Controller';
     $controller = new $controllerName;
     $controller->indexAction();
+}
+// the page is an article
+else if(is_array($article) && !empty($article) && $article[0]['status_id'] == 1) {
+    require_once(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . 'articleController.php');
+    $articleController = new articleController();
+    $articleController->indexAction($article);
 }
 // something we don't know
 else {
