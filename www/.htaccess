@@ -7,4 +7,5 @@ RewriteRule	^projects$  index.php [L]
 RewriteRule	^articles$  index.php [L]
 RewriteRule	^error$     index.php [L]
 
-RewriteRule	^[a-z0-9\-]*$  index.php [L]
+#RewriteRule	^[a-z0-9\-]*$  index.php [L]
+RewriteRule [^\.]*      index.php
