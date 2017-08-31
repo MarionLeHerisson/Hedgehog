@@ -7,11 +7,7 @@
  */
 
 // type : if article -> issue summary / expected behavior / ... + theme (if project -> theme ?)
-// Title
-// intro
-// content
-// url
-// online
+
 ?>
 
 <div class="panel panel-default">
@@ -51,7 +47,7 @@
                     </select>
                 </div>
                 <div class="form-group none" id="theme_parent">
-                    <label for="theme">Type</label>
+                    <label for="theme">Theme</label>
                     <select class="form-control" id="theme" name="theme">
                         <?php echo $themes; ?>
                     </select>

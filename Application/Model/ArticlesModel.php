@@ -49,7 +49,8 @@ class ArticlesModel extends DefaultModel {
      */
     public function getArticleFromUrl($url) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT article_type_id, author_id, title, intro, content, status_id FROM " . $this->_name . " WHERE url = ?;");
+        $query = $db->prepare("SELECT article_type_id, author_id, title, intro, content, status_id " .
+                                "FROM " . $this->_name . " WHERE url = ?;");
         $query->execute([$url]);
         return $query;
     }
@@ -61,7 +62,7 @@ class ArticlesModel extends DefaultModel {
      */
     public function getAllArticles($type) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT id, theme_id, author_id, title, intro, url, created_at " .
+        $query = $db->prepare("SELECT id, article_type_id, theme_id, author_id, title, intro, url, created_at " .
                                 "FROM " . $this->_name . " " .
                                 "WHERE is_deleted = 0 AND article_type_id = ? AND status_id = 1 " .
                                 "ORDER BY theme_id DESC;");

@@ -21,7 +21,12 @@
     </div>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
         <div class="panel-body">
-            BODY
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select class="form-control" id="list-type" name="type">
+                    <?php echo $types; ?>
+                </select>
+            </div>
         </div>
     </div>
 </div>

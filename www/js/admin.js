@@ -16,7 +16,7 @@ let showPreview = function (option) {
         let title = $('#title').val();
 
         myAjax(ajaxUrl, 'createUrl', [title], function (data) {
-            let res = JSON.parse(data);	// transforms json return from php to js object
+            let res = JSON.parse(data);
 
             if(res.stat === 'ok') {
                 $('#url').val(res.msg);
@@ -40,7 +40,7 @@ let showPreview = function (option) {
             };
 
         myAjax(ajaxUrl, 'editArticle', data, function (data) {
-            let dataObject = JSON.parse(data),	// transforms json return from php to js object
+            let dataObject = JSON.parse(data),
                 label = 'createArt';
 
             if(dataObject.stat === 'ok') {
@@ -51,7 +51,7 @@ let showPreview = function (option) {
         })
     },
 
-    resetArticle = function () {
+    clearForm = function () {
         // $('#formEditArticle')[0].reset();
     },
 
@@ -92,6 +92,7 @@ let showPreview = function (option) {
         });
     },
 
+    // Show theme field if "article" type is selected
     showTheme = function () {
         let type = $('#type').val(),
             theme = $('#theme_parent');
@@ -103,18 +104,41 @@ let showPreview = function (option) {
         }
     },
 
+    displayAllArticles = function () {
+        let type = $('#list-type').val();
+
+        myAjax(ajaxUrl, 'displayAllArticles', type, function (data) {
+            let res = JSON.parse(data),
+                div = $('<div>'),
+                html = '<ul>',
+                select = $('#list-type');
+
+            res.each(function () {
+                html += '<li>' + $(this).title + '</li>'
+            });
+
+            html += '</li>';
+            div.html(html);
+            select.after(div)
+        })
+    },
+
     init = function () {
         showTheme();
     },
 
     binds = function () {
-        let type = $('#type');
-
+        // Article edition
         $('#title').on('blur', createUrl);
         $('#createArticle').click(saveArticle);
-        $('#resetArticle').click(resetArticle);
-        type.on('change', showTheme);
+        $('#resetArticle').click(clearForm);
+        $('#type').on('change', showTheme);
         $('input[type=file]').on('change', addMainMedia);
+
+        // Manage articles
+        $('#list-type').on('change', displayAllArticles);
+
+        // Manage comments
     };
 
 $(document).ready(function () {

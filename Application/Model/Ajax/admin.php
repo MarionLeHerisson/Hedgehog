@@ -186,6 +186,27 @@ class AdminAjax {
             'status' => $status,
             'msg'    => $msg
         ]));
+    }
 
+    /**
+     * Return array of type's articles
+     *
+     * @param integer $type
+     */
+    public function displayAllArticles($type) {
+
+        require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+        $articlesManager = new ArticlesModel();
+
+        $articles = [];
+
+        if($type && $type > 0 && $type < 4) {
+            $articles = $articlesManager->getAllArticles($type);
+        }
+
+        die(json_encode([
+            'status'   => 'ok',
+            'articles' => $articles
+        ]));
     }
 }
