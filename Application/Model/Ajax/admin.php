@@ -201,7 +201,7 @@ class AdminAjax {
         $articles = [];
 
         if($type && $type > 0 && $type < 4) {
-            $articles = $articlesManager->getAllArticles($type);
+            $articles = $articlesManager->getAllArticles($type)->fetchAll(PDO::FETCH_ASSOC);
         }
 
         die(json_encode([

@@ -72,7 +72,7 @@ let showPreview = function (option) {
             dataType: 'json',
             processData: false, // Don't process the files
             contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-            success: function(data, textStatus, jqXHR) {
+            success: function(data) {   // function(data, textStatus, jqXHR)
                 if(typeof data.error === 'undefined') {
                     if(data.status === 'ko') {
                         showMessage(label, data.msg, true);
@@ -86,7 +86,7 @@ let showPreview = function (option) {
                     console.log('ERRORS: ' + data.error);
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function(jqXHR, textStatus) {    // function(jqXHR, textStatus, errorThrown)
                 console.log('ERRORS: ' + textStatus);
             }
         });
@@ -106,15 +106,16 @@ let showPreview = function (option) {
 
     displayAllArticles = function () {
         let type = $('#list-type').val();
+        $('#articles_list').remove();
 
         myAjax(ajaxUrl, 'displayAllArticles', type, function (data) {
             let res = JSON.parse(data),
-                div = $('<div>'),
+                div = $('<div id="articles_list">'),
                 html = '<ul>',
                 select = $('#list-type');
 
-            res.each(function () {
-                html += '<li>' + $(this).title + '</li>'
+            $.each(res.articles, function (key, value) {
+                html += '<li><a href="' + value.url + '" target="_blank">' + value.title + '</a></li>'
             });
 
             html += '</li>';
