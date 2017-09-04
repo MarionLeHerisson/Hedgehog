@@ -12,6 +12,5 @@ class blogController {
         require_once(BASE_PATH . 'Application/View/basics/head.php');
         require_once(BASE_PATH . 'Application/View/basics/nav.php');
         require_once(BASE_PATH . 'Application/View/blog.php');
-        require_once(BASE_PATH . 'Application/View/basics/footer.php');
     }
 }

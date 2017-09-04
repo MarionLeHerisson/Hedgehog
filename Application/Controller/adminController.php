@@ -35,8 +35,6 @@ class AdminController {
         else {
             require_once(BASE_PATH . 'Application/View/admin/connection.php');
         }
-
-        require_once(BASE_PATH . 'Application/View/basics/footer.php');
     }
 
     /**

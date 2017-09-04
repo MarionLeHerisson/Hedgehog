@@ -53,10 +53,13 @@ else if(is_array($article) && !empty($article) && $article[0]['status_id'] == 1)
 }
 // something we don't know
 else {
-
     require_once(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . 'errorController.php');
     $errorController = new errorController;
     $errorController->indexAction();
 }
 
+require_once(BASE_PATH . 'Application/Controller/footerController.php');
+$footer = footerController::getFooter();
+
+require_once(BASE_PATH . 'Application/View/basics/footer.php');
 ?>
