@@ -15,8 +15,11 @@ class AdminAjax {
      */
     public function editArticle($data) {
 
+        require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+        $articlesManager = new ArticlesModel();
+
         $articleExists = false;
-        if($data['article_id'] != 0) {
+        if($data['article_id'] != 0 && $articlesManager->getArticle($data['article_id'])) {
             $articleExists = true;
         }
 
@@ -85,6 +88,15 @@ class AdminAjax {
      */
     public function updateArticle($data) {
 
+        require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+        $articlesManager = new ArticlesModel();
+
+        $res = $articlesManager->updateArticle($data)->fetchColumn();
+
+        die(json_encode([
+                'stat'      => 'ok',
+                'msg'       => 'Article successfully saved'
+            ]));
     }
 
     /**
@@ -208,5 +220,32 @@ class AdminAjax {
             'status'   => 'ok',
             'articles' => $articles
         ]));
+    }
+
+    /**
+     * Return list of articles containing the keyword
+     *
+     * @param string $keywords
+     */
+    public function findArticle($keyword) {
+
+        require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+        $articlesManager = new ArticlesModel();
+
+        $articles = $articlesManager->getArticlesFromKeyword($keyword)->fetchAll(PDO::FETCH_ASSOC);
+
+        die(json_encode(([
+            'articles'  => $articles
+        ])));
+    }
+
+    public function getArticle($id) {
+        require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+        $articlesManager = new ArticlesModel();
+
+        $article = $articlesManager->getArticle($id)->fetch(PDO::FETCH_ASSOC);
+
+        die(json_encode(($article)));
+
     }
 }

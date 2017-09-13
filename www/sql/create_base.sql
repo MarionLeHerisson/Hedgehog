@@ -70,6 +70,7 @@ CREATE TABLE articles (
   url VARCHAR(100) NOT NULL,
   status_id INT NOT NULL DEFAULT 2,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NULL,
   is_deleted INT NOT NULL DEFAULT 0,
 
   PRIMARY KEY (id),

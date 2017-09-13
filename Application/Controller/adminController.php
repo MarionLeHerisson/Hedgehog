@@ -91,5 +91,4 @@ class AdminController {
 
         return $options;
     }
-
 }
