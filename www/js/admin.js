@@ -4,15 +4,7 @@
 
 let ajaxUrl = 'admin';
 
-let showPreview = function (option) {
-        let md = window.markdownit(),
-            content = $('#editor' + option).val(),
-            result = md.render(content);
-
-        $('#preview' + option).html(result);
-    },
-
-    createUrl = function () {
+let createUrl = function () {
         let title = $('#title').val();
 
         myAjax(ajaxUrl, 'createUrl', [title], function (data) {

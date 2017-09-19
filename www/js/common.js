@@ -69,3 +69,11 @@ function scrollToBottom() {
         'slow'
     );
 }
+
+function showPreview(option) {
+    let md = window.markdownit(),
+        content = $('#editor' + option).val(),
+        result = md.render(content);
+
+    $('#preview' + option).html(result);
+}

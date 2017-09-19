@@ -127,5 +127,24 @@ class ArticlesModel extends DefaultModel {
         return $query;
     }
 
+    /**
+     * Get the last article of a type
+     * @param integer $type
+     * @return PDOStatement
+     */
+    public function getLastArticle($type) {
+        $db = $this->connectDb();
+        $query = $db->prepare("SELECT a.id, article_type_id, theme_id, author_id, title, intro, content, url, status_id, created_at " .
+                                ",m.id as main_media_id, m.is_main " .
+                                "FROM " . $this->_name . " AS a " .
+                                "LEFT JOIN medias AS m " .
+                                "ON m.article_id = a.id " .
+                                "WHERE a.article_type_id = ? " .
+                                "ORDER BY created_at DESC " .
+                                "LIMIT 1;");
+        $query->execute([$type]);
+        return $query;
+    }
+
 
 }

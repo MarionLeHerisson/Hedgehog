@@ -7,7 +7,7 @@ class blogController {
         require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
         $articlesManager = new ArticlesModel();
 
-        $allArticles = $articlesManager->getAllArticles(3);
+        $lastArticle = $articlesManager->getLastArticle(3)->fetch(PDO::FETCH_ASSOC);
 
         require_once(BASE_PATH . 'Application/View/basics/head.php');
         require_once(BASE_PATH . 'Application/View/basics/nav.php');
