@@ -11,9 +11,13 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li <?php echo THISPAGE == 'blog' ? 'class="active"' : '' ?>><a href="<?php echo BASE_URL ?>blog">Blog</a></li>
-                <li <?php echo THISPAGE == 'projects' ? 'class="active"' : '' ?>><a href="<?php echo BASE_URL ?>projects">Projects</a></li>
+                    <li <?php echo THISPAGE == 'blog' ? 'class="active"' : '' ?>><a href="<?php echo BASE_URL ?>blog">Blog</a></li>
+                <?php if (DEBUG == 1) : ?>
+                    <li <?php echo THISPAGE == 'projects' ? 'class="active"' : '' ?>><a href="<?php echo BASE_URL ?>projects">Projets</a></li>
+                <?php endif;
+                if (DEBUG == 1) : ?>
                 <li <?php echo THISPAGE == 'articles' ? 'class="active"' : '' ?>><a href="<?php echo BASE_URL ?>articles">Articles</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

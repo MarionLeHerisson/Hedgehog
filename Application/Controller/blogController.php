@@ -8,6 +8,8 @@ class blogController {
         $articlesManager = new ArticlesModel();
 
         $lastArticle = $articlesManager->getLastArticle(3)->fetch(PDO::FETCH_ASSOC);
+        // get prev article
+        // get next article
 
         require_once(BASE_PATH . 'Application/View/basics/head.php');
         require_once(BASE_PATH . 'Application/View/basics/nav.php');

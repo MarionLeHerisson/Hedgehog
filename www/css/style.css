@@ -51,3 +51,31 @@ li {
     border-radius: 2em;
     color: white;
 }
+
+
+/* Sidebar */
+.sidebar-module-inset {
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: .25rem;
+}
+
+.sidebar-module {
+    padding: 1rem;
+    margin: 0 -1rem 1rem;
+}
+
+@media (min-width: 576px)
+_grid.scss:80
+.offset-sm-1 {
+    margin-left: 8.333333%;
+}
+@media (min-width: 576px)
+_grid.scss:71
+.col-sm-3 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 25%;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+}

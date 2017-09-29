@@ -20,7 +20,7 @@ class footerController {
 
         foreach($articles as $key => $article) {
             if($key != 0) {
-                $footer .= ' - ';
+                $footer .= ' &bull; ';
             }
             $footer .= '<a href="' . $article['url'] . '">' . $article['title'] . '</a>';
         }

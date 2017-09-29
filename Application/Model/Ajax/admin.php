@@ -59,8 +59,11 @@ class AdminAjax {
         $errors = [];
 
         if(empty($errors)) {
+
             $article_id = $articlesManager->insertArticle($data)->fetchColumn();
-            $mediaManager->insertMainMedia($data['main_media'], $article_id);
+            if(isset($data['main_media'])) {
+                $mediaManager->insertMainMedia($data['main_media'], $article_id);
+            }
 
             die(json_encode([
                 'stat'  	=> 'ok',
