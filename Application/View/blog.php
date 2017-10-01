@@ -12,8 +12,10 @@
 <div class="col-md-2 col-sm-3 offset-sm-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>À propos</h4>
-            <p>Marion Hurteau est une développeuse parisienne qui a entrepris un voyage d'environ 9 mois en <em>Nouvelle-Zélande</em>. Accompagnée de son
-            ami Michel - ou Mike pour les kiwis - elle vous raconte ici ses aventures !</p>
+            <p>Marion Hurteau est une développeuse parisienne qui a entrepris un voyage d'environ 9 mois en <em>Nouvelle-Zélande</em>. Elle vous raconte ici ses aventures !</p>
+          </div>
+          <div class="sidebar-module">
+            <div id="displayDaysCount">Partie depuis <span id="daysCount"></span> jours</div>
           </div>
           <div class="sidebar-module">
             <h4>Archives</h4>

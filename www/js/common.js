@@ -77,3 +77,15 @@ function showPreview(option) {
 
     $('#preview' + option).html(result);
 }
+
+function countDays() {
+    let today = new Date(2017, 9, 1),
+        dep = new Date(2017, 08, 18);
+
+    count = (today.getTime() - dep.getTime()) / (3600000 * 24);
+    $('#daysCount').html(Math.floor(count));
+}
+
+$(document).ready(function () {
+    countDays();
+});
