@@ -1,8 +1,16 @@
 <?php
 session_start();
 
-require_once("../const.php");
-require_once("../library/strings.php");
+if($_SERVER['HTTP_HOST'] == 'localhost') {
+    define('BASE_PATH', 'C:' . DIRECTORY_SEPARATOR . 'wamp64' . DIRECTORY_SEPARATOR . 'www' . DIRECTORY_SEPARATOR .
+        'hedgehog' . DIRECTORY_SEPARATOR);
+
+} else {
+    define('BASE_PATH', '/home/marion/');
+}
+
+require_once(BASE_PATH . "const.php");
+require_once(BASE_PATH . "library/strings.php");
 
 // Handle connection
 if(isset($_POST['login']) && isset($_POST['pwd'])) {
