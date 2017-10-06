@@ -65,6 +65,7 @@ class ArticlesModel extends DefaultModel {
                 $data['article_id']
             ]
         );
+
         return $query;
     }
 
@@ -75,7 +76,7 @@ class ArticlesModel extends DefaultModel {
      */
     public function getArticleFromUrl($url) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT article_type_id, author_id, title, intro, content, status_id " .
+        $query = $db->prepare("SELECT article_type_id, author_id, title, intro, content, status_id, url " .
                                 "FROM " . $this->_name . " WHERE url = ?;");
         $query->execute([$url]);
         return $query;
@@ -146,5 +147,41 @@ class ArticlesModel extends DefaultModel {
         return $query;
     }
 
+    /**
+     * Get the previous article's title
+     * @param string $url
+     * @return PDOStatement
+     */
+    public function getPrevT($url) {
+        $db = $this->connectDb();
+        $query = $db->prepare("SELECT title, url " .
+                                "FROM " . $this->_name . " " .
+                                "WHERE id < (SELECT id FROM " . $this->_name . " WHERE url = ?) " .
+                                "AND is_deleted = 0 " .
+                                "AND article_type_id = 3 " .
+                                "AND status_id = 1 " .
+                                "ORDER BY created_at DESC " .
+                                "LIMIT 1;");
+        $query->execute([$url]);
+        return $query;
+    }
 
+    /**
+     * Get the next article's title
+     * @param string $url
+     * @return PDOStatement
+     */
+    public function getNextT($url) {
+        $db = $this->connectDb();
+        $query = $db->prepare("SELECT title, url " .
+                                "FROM " . $this->_name . " " .
+                                "WHERE id > (SELECT id FROM " . $this->_name . " WHERE url = ?) " .
+                                "AND is_deleted = 0 " .
+                                "AND article_type_id = 3 " .
+                                "AND status_id = 1 " .
+                                "ORDER BY created_at ASC " .
+                                "LIMIT 1;");
+        $query->execute([$url]);
+        return $query;
+    }
 }

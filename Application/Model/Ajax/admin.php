@@ -67,7 +67,7 @@ class AdminAjax {
 
             die(json_encode([
                 'stat'  	=> 'ok',
-                'msg'	    => 'Article successfully saved'
+                'msg'	    => 'New article successfully saved'
             ]));
 
         } else {
@@ -94,11 +94,15 @@ class AdminAjax {
         require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
         $articlesManager = new ArticlesModel();
 
+        if($data['theme'] == '') {
+            $data['theme'] = NULL;
+        }
+
         $res = $articlesManager->updateArticle($data)->fetchColumn();
 
         die(json_encode([
                 'stat'      => 'ok',
-                'msg'       => 'Article successfully saved'
+                'msg'       => 'Article editions successfully saved'
             ]));
     }
 

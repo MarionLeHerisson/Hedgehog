@@ -1,22 +1,42 @@
 <div class="col-md-2"></div>
 
 <div class="col-md-6">
-	<h1><?php echo $lastArticle['title']; ?></h1>
-	<textarea id="editor-intro" class="none"><?php echo $lastArticle['intro'];?></textarea>
-	<textarea id="editor-content" class="none"><?php echo $lastArticle['content'];?></textarea>
+	<h1><?php echo $article['title']; ?></h1>
+	<textarea id="editor-intro" class="none"><?php echo $article['intro'];?></textarea>
+	<textarea id="editor-content" class="none"><?php echo $article['content'];?></textarea>
 
 	<div id="preview-intro"></div>
 	<div id="preview-content"></div>
+
+  <?php if($prev['url'] != ''): ?>
+  <div id="prev">
+    <-
+    <a href="blog?post=<?php echo $prev['url']; ?>">
+      <?php echo $prev['title']; ?>
+    </a>
+  </div>
+  <?php endif; ?>
+
+  <?php if($next['url'] != ''): ?>
+  <div id="next">
+    <a href="blog?post=<?php echo $next['url']; ?>">
+      <?php echo $next['title']; ?>
+    </a>
+    ->
+  </div>
+<?php endif; ?>
+
 </div>
 
 <div class="col-md-2 col-sm-3 offset-sm-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>À propos</h4>
-            <p>Marion Hurteau est une développeuse parisienne qui a entrepris un voyage d'environ 9 mois en <em>Nouvelle-Zélande</em>. Elle vous raconte ici ses aventures !</p>
+            <p>Marion Hurteau est une développeuse parisienne qui a entrepris un voyage d'environ 9 mois en <strong>Nouvelle-Zélande</strong>. Elle vous raconte ici ses aventures !</p>
           </div>
           <div class="sidebar-module">
-            <div id="displayDaysCount">Partie depuis <span id="daysCount"></span> jours</div>
+            <div id="displayDaysCount"><span id="daysCount"></span><sup>ème</sup> jour de voyage</div>
           </div>
+          <?php if(DEBUG == 1): ?>
           <div class="sidebar-module">
             <h4>Archives</h4>
             <ol class="list-unstyled">
@@ -34,6 +54,7 @@
               <li><a href="#">April 2013</a></li>
             </ol>
           </div>
+      <?php endif; ?>
         </div>
 
 <script type="text/javascript">

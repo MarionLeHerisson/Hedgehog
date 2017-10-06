@@ -79,7 +79,7 @@ function showPreview(option) {
 }
 
 function countDays() {
-    let today = new Date(2017, 9, 1),
+    let today = new Date(),
         dep = new Date(2017, 08, 18);
 
     count = (today.getTime() - dep.getTime()) / (3600000 * 24);

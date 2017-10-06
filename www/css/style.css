@@ -80,7 +80,13 @@ _grid.scss:71
     max-width: 25%;
 }
 
-/* days counter */
-#displayDaysCount {
+/* Next / Prev */
+#next {
+    display: block;
+    float: right;
 }
 
+#prev {
+    display: block;
+    float: left;
+}
