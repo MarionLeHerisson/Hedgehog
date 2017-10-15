@@ -61,10 +61,17 @@ class AdminAjax {
         if(empty($errors)) {
 
             $article_id = $articlesManager->insertArticle($data)->fetchColumn();
+
             if(isset($data['main_media'])) {
                 $mediaManager->insertMainMedia($data['main_media'], $article_id);
             }
 
+            if(!$article_id) {
+                die(json_encode([
+                    'stat'      => 'ko',
+                    'msg'       => 'An error occured'
+                ]));
+            }
             die(json_encode([
                 'stat'  	=> 'ok',
                 'msg'	    => 'New article successfully saved'

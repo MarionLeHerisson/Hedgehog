@@ -2,15 +2,21 @@
 
 <div class="col-md-6">
 	<h1><?php echo $article['title']; ?></h1>
+  <i><?php echo $article['created_at']; ?></i>
+
+  <hr>
+
 	<textarea id="editor-intro" class="none"><?php echo $article['intro'];?></textarea>
 	<textarea id="editor-content" class="none"><?php echo $article['content'];?></textarea>
 
 	<div id="preview-intro"></div>
 	<div id="preview-content"></div>
 
+  <hr>
+
   <?php if($prev['url'] != ''): ?>
   <div id="prev">
-    <-
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
     <a href="blog?post=<?php echo $prev['url']; ?>">
       <?php echo $prev['title']; ?>
     </a>
@@ -22,7 +28,7 @@
     <a href="blog?post=<?php echo $next['url']; ?>">
       <?php echo $next['title']; ?>
     </a>
-    ->
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
   </div>
 <?php endif; ?>
 
@@ -31,11 +37,18 @@
 <div class="col-md-2 col-sm-3 offset-sm-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>À propos</h4>
-            <p>Marion Hurteau est une développeuse parisienne qui a entrepris un voyage d'environ 9 mois en <strong>Nouvelle-Zélande</strong>. Elle vous raconte ici ses aventures !</p>
+            <p>Marion Hurteau est une étudiante et développeuse parisienne qui a entrepris un voyage d'environ neuf mois en <strong>Nouvelle-Zélande</strong>. Elle vous raconte ici ses aventures !</p>
           </div>
+
           <div class="sidebar-module">
+            <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
+            <a href="blog?post=introduction">Aller à la première page du blog</a>
+          </div>
+
+          <div class="sidebar-module sidebar-module-inset">
             <div id="displayDaysCount"><span id="daysCount"></span><sup>ème</sup> jour de voyage</div>
           </div>
+
           <?php if(DEBUG == 1): ?>
           <div class="sidebar-module">
             <h4>Archives</h4>

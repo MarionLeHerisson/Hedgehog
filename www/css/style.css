@@ -19,6 +19,16 @@ li {
     list-style: none;
 }
 
+/* post */
+#preview-content p {
+    text-align: justify;
+}
+
+table {width: 100%;max-width: 100%;margin-bottom: 20px;} /* Aweful hack to get Bootstrap .table css without table class */
+tr {display: table-row;vertical-align: inherit;border-color: inherit;}
+th {vertical-align: bottom;border-bottom: 2px solid #ddd;}
+td {padding: 8px;line-height: 1.42857143;vertical-align: top;border: 1px solid #ddd;}
+
 /* Scroll to top/bottom */
 .scroll {
     display: block;

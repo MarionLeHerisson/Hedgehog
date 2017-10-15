@@ -19,7 +19,7 @@ class ArticlesModel extends DefaultModel {
      */
     public function insertArticle($data) {
         $db = $this->connectDb();
-        $query = $db->prepare("INSERT INTO " . $this->_name .
+        $query = $db->prepare("INSERT INTO " . $this->_name . " " .
             "(article_type_id, theme_id, author_id, title, intro, content, url, status_id) " .
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
 
@@ -76,7 +76,7 @@ class ArticlesModel extends DefaultModel {
      */
     public function getArticleFromUrl($url) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT article_type_id, author_id, title, intro, content, status_id, url " .
+        $query = $db->prepare("SELECT article_type_id, author_id, title, intro, content, status_id, url, created_at " .
                                 "FROM " . $this->_name . " WHERE url = ?;");
         $query->execute([$url]);
         return $query;
