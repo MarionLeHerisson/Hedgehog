@@ -46,7 +46,9 @@
           </div>
 
           <div class="sidebar-module sidebar-module-inset">
-            <div id="displayDaysCount"><span id="daysCount"></span><sup>ème</sup> jour de voyage</div>
+            <div id="displayDaysCount"><span id="daysCount"></span><sup>ème</sup> jour de voyage.</div>
+            <iframe width="223" height="350" src="https://maphub.net/embed/17969" frameborder="0" allowfullscreen></iframe>
+            Le marqueur rouge indique où je me trouve actuellement !
           </div>
 
           <?php if(DEBUG == 1): ?>
