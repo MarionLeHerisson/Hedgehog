@@ -160,8 +160,8 @@ class AdminAjax {
         $status        = 'ok';
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
         $msg           = '<ul>';
-
-            // Check if image file is a actual image or fake image
+die(print_r($fileData));
+        // Check if image file is an actual image or fake image
         $check = getimagesize($fileData["tmp_name"]);
         if($check == false) {
             $msg .= "<li>File is not an image.</li>";
@@ -170,20 +170,21 @@ class AdminAjax {
 
         // Check if file already exists
         if (file_exists($target_file)) {
-            $msg .= "<li>Sorry, file already exists.</li>";
+            $msg .= "<li>File already exists.</li>";
             $status = 'ko';
         }
 
         // Check file size
-        if ($fileData["size"] > 500000) {
-            $msg .= "<li>Sorry, your file is too large.</li>";
+        // ini_set("upload_max_filesize", "50000000");
+        if ($fileData["size"] > 500000 || $fileData["error"] == 1 || $fileData["error"] == 2) {
+            $msg .= "<li>Your file is too large.</li>";
             $status = 'ko';
         }
 
         // Allow certain file formats
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif" ) {
-            $msg .= "<li>Sorry, only JPG, JPEG, PNG & GIF files are allowed.</li>";
+            $msg .= "<li>Only JPG, JPEG, PNG & GIF files are allowed.</li>";
             $status = 'ko';
         }
 
@@ -205,6 +206,7 @@ class AdminAjax {
 
             } else {
                 $msg .= "Sorry, there was an error uploading your file.";
+                $status = "ko";
             }
         }
 

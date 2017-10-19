@@ -32,7 +32,13 @@ if(isset($_POST['login']) && isset($_POST['pwd'])) {
 if(array_key_exists('REDIRECT_URL', $_SERVER)) {
     $exploded = explode('/', $_SERVER['REDIRECT_URL']);
     $len = sizeof($exploded) - 1;
-    define('THISPAGE', $exploded[$len]);
+    $page = $exploded[$len];
+
+    if($page == '') {
+        define('THISPAGE', 'blog');
+    } else {
+        define('THISPAGE', $page);
+    }
 }
 else {
     define('THISPAGE', 'blog');
