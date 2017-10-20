@@ -25,7 +25,7 @@
                 <div class="none">
                     <input type="text" id="author_id" name="author_id" value="<?php echo $author_id ?>">
                     <input type="text" id="article_id" name="article_id" value="<?php echo $article_id ?>">
-                    <input type="text" id="main_media" name="main_media" value="<?php echo $main_media?>">
+                    <!-- <input type="text" id="main_media" name="main_media" value="<?php echo $main_media?>"> -->
                 </div>
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -52,7 +52,7 @@
                         <?php echo $themes; ?>
                     </select>
                 </div>
-                <form class="form-inline" enctype="multipart/form-data" id="form_main_media" action="admin">
+                <!-- <form class="form-inline" enctype="multipart/form-data" id="form_main_media" action="admin">
                     <div class="form-group">
                         <label for="main_media_select">Main media</label>
                         <input type="file" id="main_media_select" name="main_media_select">
@@ -64,7 +64,7 @@
                         </button>
                         <p id="mainImgMsg"></p>
                     </div>
-                </form>
+                </form> -->
                 <div class="form-group">
                     <label for="editor-intro">Introduction</label>
                     <ul class="nav nav-tabs">

@@ -158,7 +158,7 @@ class AdminAjax {
         $target_dir    = BASE_PATH . "www\Medias\uploads\\";
         $target_file   = $target_dir . basename($fileData["name"]);
         $status        = 'ok';
-        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $msg           = '<ul>';
 
         // Check file size
