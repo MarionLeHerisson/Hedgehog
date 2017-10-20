@@ -15,6 +15,7 @@
     <br><br>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <?php require_once(BASE_PATH . 'Application/View/admin/createArticle.php'); ?>
+        <?php require_once(BASE_PATH . 'Application/View/admin/addMedia.php'); ?>
         <?php require_once(BASE_PATH . 'Application/View/admin/manageArticles.php'); ?>
         <?php require_once(BASE_PATH . 'Application/View/admin/manageComments.php'); ?>
         <?php include_once(BASE_PATH . 'Application/View/blocks/scrollButton.php'); ?>

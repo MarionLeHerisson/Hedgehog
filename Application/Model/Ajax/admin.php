@@ -160,9 +160,16 @@ class AdminAjax {
         $status        = 'ok';
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
         $msg           = '<ul>';
-die(print_r($fileData));
+
+        // Check file size
+        // ini_set("upload_max_filesize", "50000000");
+        if ($fileData["size"] > 10485760 || $fileData["error"] == 1 || $fileData["error"] == 2) {
+            $msg .= "<li>Your file is too large.</li>";
+            $status = 'ko';
+        }
+
         // Check if image file is an actual image or fake image
-        $check = getimagesize($fileData["tmp_name"]);
+        $check = ($fileData["tmp_name"] != '' && getimagesize($fileData["tmp_name"]));
         if($check == false) {
             $msg .= "<li>File is not an image.</li>";
             $status = 'ko';
@@ -171,13 +178,6 @@ die(print_r($fileData));
         // Check if file already exists
         if (file_exists($target_file)) {
             $msg .= "<li>File already exists.</li>";
-            $status = 'ko';
-        }
-
-        // Check file size
-        // ini_set("upload_max_filesize", "50000000");
-        if ($fileData["size"] > 500000 || $fileData["error"] == 1 || $fileData["error"] == 2) {
-            $msg .= "<li>Your file is too large.</li>";
             $status = 'ko';
         }
 

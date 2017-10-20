@@ -10,7 +10,7 @@ if($_SERVER['HTTP_HOST'] == 'localhost') {
     ini_set("display_errors", 1);
     define('DEBUG', 1);
 
-    ini_set("upload_max_filesize", 5000000);
+    ini_set("upload_max_filesize", '1000000000');
 }
 
 /* P R O D U C T I O N   E N V */
