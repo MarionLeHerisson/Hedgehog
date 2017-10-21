@@ -22,7 +22,7 @@ class AdminController {
         require_once(BASE_PATH . 'Application/View/basics/nav.php');
 
         // If user is connected and is an admin
-        if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 1) {
+        if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 2) {
 
             $types      = $this->getTypes();
             $themes     = $this->getThemes();
