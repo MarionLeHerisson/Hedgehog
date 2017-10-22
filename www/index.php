@@ -28,6 +28,9 @@ if(isset($_POST['login']) && isset($_POST['pwd'])) {
     }
 }
 
+require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+$ArticlesModel = new ArticlesModel();
+
 // get current page name
 if(array_key_exists('REDIRECT_URL', $_SERVER)) {
     $exploded = explode('/', $_SERVER['REDIRECT_URL']);
@@ -35,22 +38,27 @@ if(array_key_exists('REDIRECT_URL', $_SERVER)) {
     $page = $exploded[$len];
 
     if($page == '') {
-        define('THISPAGE', 'blog');
+        $article = $ArticlesModel->getLastArticle(3)->fetch(PDO::FETCH_ASSOC);
+        define('THISPAGE', $article['url']);
     } else {
         define('THISPAGE', $page);
     }
 }
 else {
-    define('THISPAGE', 'blog');
+    $article = $ArticlesModel->getLastArticle(3)->fetch(PDO::FETCH_ASSOC);
+    define('THISPAGE', $article['url']);
 }
 
-require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
-$ArticlesModel = new ArticlesModel();
-$article = $ArticlesModel->getArticleFromUrl(THISPAGE)->fetchAll(PDO::FETCH_ASSOC);
+$article = $ArticlesModel->getArticleFromUrl(THISPAGE)->fetch(PDO::FETCH_ASSOC);
 
+// the page is an article
+if(is_array($article) && !empty($article) && $article['status_id'] == 1) {
+    require_once(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . 'articleController.php');
+    $articleController = new articleController();
+    $articleController->indexAction($article);
+}
 // include current page controller (if it exists)
-if(file_exists(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . THISPAGE . 'Controller.php')) {
-
+else if(file_exists(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . THISPAGE . 'Controller.php')) {
     require_once(
         BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . THISPAGE . 'Controller.php');
 
@@ -58,12 +66,6 @@ if(file_exists(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . 
     $controllerName = THISPAGE . 'Controller';
     $controller = new $controllerName;
     $controller->indexAction();
-}
-// the page is an article
-else if(is_array($article) && !empty($article) && $article[0]['status_id'] == 1) {
-    require_once(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . 'articleController.php');
-    $articleController = new articleController();
-    $articleController->indexAction($article);
 }
 // something we don't know
 else {

@@ -141,6 +141,7 @@ class ArticlesModel extends DefaultModel {
                                 "LEFT JOIN medias AS m " .
                                 "ON m.article_id = a.id " .
                                 "WHERE a.article_type_id = ? " .
+                                "AND status_id = 1 " .
                                 "ORDER BY created_at DESC " .
                                 "LIMIT 1;");
         $query->execute([$type]);

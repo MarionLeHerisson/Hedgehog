@@ -8,11 +8,21 @@
 
 class articleController {
 
-    public function indexAction($article) {
-	 			$article = $article[0];
+	public function indexAction($article) {
 
-        require_once(BASE_PATH . 'Application/View/basics/head.php');
-        require_once(BASE_PATH . 'Application/View/basics/nav.php');
-        require_once(BASE_PATH . 'Application/View/blog.php');
-    }
+		$prev = '';
+		$next = '';
+
+	  	if($article['article_type_id'] == 3) {
+	  		require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+			$articlesManager = new ArticlesModel();
+
+		  	$prev = $articlesManager->getPrevT($article['url'])->fetch(PDO::FETCH_ASSOC);
+		    $next = $articlesManager->getNextT($article['url'])->fetch(PDO::FETCH_ASSOC);
+	  	}
+
+	    require_once(BASE_PATH . 'Application/View/basics/head.php');
+	    require_once(BASE_PATH . 'Application/View/basics/nav.php');
+	    require_once(BASE_PATH . 'Application/View/article.php');
+	}
 }

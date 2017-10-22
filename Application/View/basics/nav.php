@@ -7,12 +7,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo BASE_URL ?>blog">Marion Le Hérisson</a>
+            <a class="navbar-brand" href="<?php echo BASE_URL ?>" target="_self">Marion Le Hérisson</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li <?php echo THISPAGE == 'blog' ? 'class="active"' : '' ?>>
-                    <a href="<?php echo BASE_URL ?>blog" target="_self">Blog</a>
+                    <a href="<?php echo BASE_URL ?>" target="_self">Blog</a>
                 </li>
                 <li <?php echo THISPAGE == 'articles' ? 'class="active"' : '' ?>>
                     <a href="<?php echo BASE_URL ?>articles" target="_self">Articles</a>

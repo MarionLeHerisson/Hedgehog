@@ -39,7 +39,7 @@ class ArticleService {
                 $html .= '<h3>' . $currentTheme . '</h3>';
                 $html .= '<ul>';
             }
-            $html .= '<li><a href="' . $article['url'] . '">' . $article['title'] . '</a>' .
+            $html .= '<li><a href="' . $article['url'] . '" target="_self">' . $article['title'] . '</a>' .
                 '<span class="pull-right">' . $article['created_at'] . '</span></li>';
         }
 
