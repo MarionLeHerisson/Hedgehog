@@ -20,7 +20,7 @@
         <label for="pwd">Password</label>
         <input class="form-control" type="password" id="pwd" name="pwd">
     </div>
-    <button type="submit" class="btn btn-warning">Log in</button>
+    <button type="submit" class="btn btn-warning" formtarget="_self">Log in</button>
 </form>
 
 <div class="col-md-4"></div>

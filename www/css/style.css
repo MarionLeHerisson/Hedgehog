@@ -19,6 +19,10 @@ li {
     list-style: none;
 }
 
+img {
+    max-width: 100%;
+}
+
 /* post */
 #preview-content p {
     text-align: justify;
