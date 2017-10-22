@@ -200,7 +200,8 @@ class AdminAjax {
 
                 die(json_encode([
                     'status' => $status,
-                    'msg'    => "The file ". basename( $fileData["name"]). " has been uploaded.",
+                    'msg'    => "The file ". basename($fileData["name"]). " has been uploaded.<br>" .
+                                "![" . $fileData["name"] . "](Medias/uploads/" . $fileData["name"] . ")",
                     'img'    => $target_file
                 ]));
 

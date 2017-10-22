@@ -17,7 +17,7 @@
   <?php if($prev['url'] != ''): ?>
   <div id="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <a href="blog?post=<?php echo $prev['url']; ?>">
+    <a href="blog?post=<?php echo $prev['url']; ?>" target="_self">
       <?php echo $prev['title']; ?>
     </a>
   </div>
@@ -25,7 +25,7 @@
 
   <?php if($next['url'] != ''): ?>
   <div id="next">
-    <a href="blog?post=<?php echo $next['url']; ?>">
+    <a href="blog?post=<?php echo $next['url']; ?>" target="_self">
       <?php echo $next['title']; ?>
     </a>
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
@@ -43,14 +43,14 @@
 
           <div class="sidebar-module">
             <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
-            <a href="blog?post=introduction">Aller à la première page du blog</a>
+            <a href="blog?post=introduction" target="_self">Aller à la première page du blog</a>
           </div>
 
           <div class="sidebar-module sidebar-module-inset">
             <div id="displayDaysCount">
               <h4><span id="daysCount"></span><sup>ème</sup> jour de voyage.</h4>
             </div>
-            <iframe width="223" height="350" src="https://maphub.net/embed/17969" frameborder="0" allowfullscreen></iframe>
+            <iframe height="350" src="https://maphub.net/embed/17969" frameborder="0" allowfullscreen></iframe>
             Le marqueur rouge indique où je me trouve actuellement !
           </div>
 
@@ -58,7 +58,7 @@
           <div class="sidebar-module">
             <h4>Archives</h4>
             <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
+              <li><a href="#" target="_self">March 2014</a></li>
               <li><a href="#">February 2014</a></li>
               <li><a href="#">January 2014</a></li>
               <li><a href="#">December 2013</a></li>

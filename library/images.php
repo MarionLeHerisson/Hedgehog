@@ -41,7 +41,7 @@ class Images {
         $tmp = imagecreatetruecolor($width, $height);
         imagecopyresampled($tmp, $image, 0, 0, 0, 0, $width, $height, $orig_width, $orig_height);
 
-        switch (substr($file,strlen($file) - 3, strlen($file))) {
+        switch (strtolower(substr($file,strlen($file) - 3, strlen($file)))) {
             case 'jpg':
                 imagejpeg($tmp, $file, 100);
                 break;

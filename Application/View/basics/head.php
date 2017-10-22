@@ -44,6 +44,8 @@
         <script src="js/bootstrap-toggle.min.js"></script>
         <script src="js/markdown-it.min.js"></script>
         <?php echo THISPAGE == 'admin' ? '<script src="js/admin.js"></script>' : ''; ?>
+
+        <base target="_blank">
     </head>
 
     <body>
