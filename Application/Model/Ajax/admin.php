@@ -162,7 +162,6 @@ class AdminAjax {
         $msg           = '<ul>';
 
         // Check file size
-        // ini_set("upload_max_filesize", "50000000");
         if ($fileData["size"] > 10485760 || $fileData["error"] == 1 || $fileData["error"] == 2) {
             $msg .= "<li>Your file is too large.</li>";
             $status = 'ko';

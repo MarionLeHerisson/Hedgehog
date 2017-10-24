@@ -18,8 +18,9 @@
         <?php require_once(BASE_PATH . 'Application/View/admin/addMedia.php'); ?>
         <?php require_once(BASE_PATH . 'Application/View/admin/manageArticles.php'); ?>
         <?php require_once(BASE_PATH . 'Application/View/admin/manageComments.php'); ?>
-        <?php include_once(BASE_PATH . 'Application/View/blocks/scrollButton.php'); ?>
+        <a href="phpinfos">PHP infos</a>
 
+        <?php include_once(BASE_PATH . 'Application/View/blocks/scrollButton.php'); ?>
     </div>
 </div>
 
