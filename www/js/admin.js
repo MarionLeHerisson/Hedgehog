@@ -52,7 +52,7 @@ let createUrl = function () {
             data = new FormData(),
             label = 'mainImg';
 
-        showMessage(label, '<img src="Medias/loader.gif">TRALALALALAL', false);
+        showMessage(label, '<img src="Medias/loader.gif">', false);
 
         $.each(files, function(key, value) {
             data.append(key, value);
