@@ -54,15 +54,8 @@ $UrlsModel = new UrlsModel();
 
 $article = $UrlsModel->getArticleFromUrl(THISPAGE)->fetch(PDO::FETCH_ASSOC);
 
-
-// the page is an article
-if(is_array($article) && !empty($article) && $article['status_id'] == 1) {
-    require_once(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . 'articleController.php');
-    $articleController = new articleController();
-    $articleController->indexAction($article);
-}
 // include current page controller (if it exists)
-else if(file_exists(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . THISPAGE . 'Controller.php')) {
+if(file_exists(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . THISPAGE . 'Controller.php')) {
     require_once(
         BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . THISPAGE . 'Controller.php');
 
@@ -70,6 +63,12 @@ else if(file_exists(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controlle
     $controllerName = THISPAGE . 'Controller';
     $controller = new $controllerName;
     $controller->indexAction();
+}
+// the page is an article
+else if(is_array($article) && !empty($article) && $article['status_id'] == 1) {
+    require_once(BASE_PATH . 'Application' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . 'articleController.php');
+    $articleController = new articleController();
+    $articleController->indexAction($article);
 }
 // something we don't know
 else {
