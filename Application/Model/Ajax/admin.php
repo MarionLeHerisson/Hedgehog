@@ -37,13 +37,16 @@ class AdminAjax {
      */
     public function createArticle($data) {
 
+        require_once(BASE_PATH . 'Application/Model/UrlsModel.php');
+        $urlsManager = new UrlsModel();
+
         require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
         $articlesManager = new ArticlesModel();
 
         require_once(BASE_PATH . 'Application/Model/MediasModel.php');
         $mediaManager = new MediasModel();
 
-        $url = $articlesManager->getArticleFromUrl($data['url'])->fetchColumn();
+        $url = $urlsManager->getArticleFromUrl($data['url'])->fetchColumn();
 
         if($url) {
             die(json_encode([
@@ -59,6 +62,8 @@ class AdminAjax {
         $errors = [];
 
         if(empty($errors)) {
+            $url_id = $urlsManager->insertUrl($data['url'])->fetchColumn();
+            $data['url_id'] = $url_id;
 
             $article_id = $articlesManager->insertArticle($data)->fetchColumn();
 

@@ -49,7 +49,11 @@ else {
     define('THISPAGE', $article['url']);
 }
 
-$article = $ArticlesModel->getArticleFromUrl(THISPAGE)->fetch(PDO::FETCH_ASSOC);
+require_once(BASE_PATH . 'Application/Model/UrlsModel.php');
+$UrlsModel = new UrlsModel();
+
+$article = $UrlsModel->getArticleFromUrl(THISPAGE)->fetch(PDO::FETCH_ASSOC);
+
 
 // the page is an article
 if(is_array($article) && !empty($article) && $article['status_id'] == 1) {

@@ -56,27 +56,11 @@ INSERT INTO status(label)
 VALUES ('online'), ('offline'), ('removed');
 
 -- Storage tables
-CREATE TABLE articles (
+CREATE TABLE urls (
   id INT NOT NULL AUTO_INCREMENT,
-  article_type_id INT NOT NULL,
-  theme_id INT DEFAULT NULL,
-  author_id INT NOT NULL DEFAULT 1,
-  title VARCHAR (50) NOT NULL,
-  intro TEXT DEFAULT NULL,
-  issue_sum VARCHAR(100) DEFAULT NULL,
-  expected VARCHAR(255) DEFAULT NULL,
-  current VARCHAR(255) DEFAULT NULL,
-  content TEXT NOT NULL,
-  url VARCHAR(100) NOT NULL,
-  status_id INT NOT NULL DEFAULT 2,
-  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT 0,
-  is_deleted INT NOT NULL DEFAULT 0,
+  url VARCHAR(255) NOT NULL,
 
-  PRIMARY KEY (id),
-  FOREIGN KEY (article_type_id) REFERENCES article_type(id),
-  FOREIGN KEY (theme_id) REFERENCES themes(id),
-  FOREIGN KEY (status_id) REFERENCES status(id)
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE users (
@@ -93,18 +77,44 @@ CREATE TABLE users (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE articles (
+  id INT NOT NULL AUTO_INCREMENT,
+  article_type_id INT NOT NULL,
+  theme_id INT DEFAULT NULL,
+  author_id INT NOT NULL DEFAULT 1,
+  title VARCHAR (50) NOT NULL,
+  intro TEXT DEFAULT NULL,
+--  issue_sum VARCHAR(100) DEFAULT NULL,
+--  expected VARCHAR(255) DEFAULT NULL,
+--  current VARCHAR(255) DEFAULT NULL,
+  content TEXT NOT NULL,
+  url_id VARCHAR(100) NOT NULL,
+  status_id INT NOT NULL DEFAULT 2,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NULL,
+  is_deleted INT NOT NULL DEFAULT 0,
+
+  PRIMARY KEY (id),
+  FOREIGN KEY (article_type_id) REFERENCES article_type(id),
+  FOREIGN KEY (theme_id) REFERENCES themes(id),
+  FOREIGN KEY (author_id) REFERENCES users(id),
+  FOREIGN KEY (url_id) REFERENCES urls(id),
+  FOREIGN KEY (status_id) REFERENCES status(id)
+);
+
 CREATE TABLE comments (
   id INT NOT NULL AUTO_INCREMENT,
   content TEXT NOT NULL,
-  author_id INT NOT NULL,
-  article_id INT NOT NULL,
+  author_id INT DEFAULT NULL,
+  author_name VARCHAR(25) NOT NULL,
+  article_url_id INT NOT NULL,
   parent_id INT DEFAULT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   is_deleted INT NOT NULL DEFAULT 0,
 
   PRIMARY KEY (id),
   FOREIGN KEY (author_id) REFERENCES users(id),
-  FOREIGN KEY (article_id) REFERENCES articles(id),
+  FOREIGN KEY (article_url_id) REFERENCES urls(id),
   FOREIGN KEY (parent_id) REFERENCES comments(id)
 );
 

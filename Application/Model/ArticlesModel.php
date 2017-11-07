@@ -20,7 +20,7 @@ class ArticlesModel extends DefaultModel {
     public function insertArticle($data) {
         $db = $this->connectDb();
         $query = $db->prepare("INSERT INTO " . $this->_name . " " .
-            "(article_type_id, theme_id, author_id, title, intro, content, url, status_id) " .
+            "(article_type_id, theme_id, author_id, title, intro, content, url_id, status_id) " .
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
 
         $query->execute(
@@ -31,7 +31,7 @@ class ArticlesModel extends DefaultModel {
                 $data['title'],
                 $data['editor_intro'],
                 $data['editor_content'],
-                $data['url'],
+                $data['url_id'],
                 $data['status']
             ]
         );
@@ -66,19 +66,6 @@ class ArticlesModel extends DefaultModel {
             ]
         );
 
-        return $query;
-    }
-
-    /**
-     * Return an article's data from its url
-     * @param string $url
-     * @return PDOStatement
-     */
-    public function getArticleFromUrl($url) {
-        $db = $this->connectDb();
-        $query = $db->prepare("SELECT article_type_id, author_id, title, intro, content, status_id, url, created_at " .
-                                "FROM " . $this->_name . " WHERE url = ?;");
-        $query->execute([$url]);
         return $query;
     }
 
@@ -135,13 +122,16 @@ class ArticlesModel extends DefaultModel {
      */
     public function getLastArticle($type) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT a.id, article_type_id, theme_id, author_id, title, intro, content, url, status_id, created_at " .
-                                ",m.id as main_media_id, m.is_main " .
+        $query = $db->prepare("SELECT a.id, a.article_type_id, a.theme_id, a.author_id, a.title, a.intro, a.content, a.url_id, a.status_id, a.created_at" .
+                    //            ",m.id as main_media_id, m.is_main " .
+                                ", u.id, u.url " .
                                 "FROM " . $this->_name . " AS a " .
-                                "LEFT JOIN medias AS m " .
-                                "ON m.article_id = a.id " .
+                      //          "LEFT JOIN medias AS m " .
+                       //         "ON m.article_id = a.id " .
+                                "LEFT JOIN urls AS u " .
+                                "ON u.id = a.url_id " .
                                 "WHERE a.article_type_id = ? " .
-                                "AND status_id = 1 " .
+                                "AND a.status_id = 1 " .
                                 "ORDER BY created_at DESC " .
                                 "LIMIT 1;");
         $query->execute([$type]);
@@ -155,9 +145,11 @@ class ArticlesModel extends DefaultModel {
      */
     public function getPrevT($url) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT title, url " .
-                                "FROM " . $this->_name . " " .
-                                "WHERE id < (SELECT id FROM " . $this->_name . " WHERE url = ?) " .
+        $query = $db->prepare("SELECT a.title, a.url_id, u.url " .
+                                "FROM " . $this->_name . " AS a " .
+                                "LEFT JOIN urls AS u ON a.url_id = u.id " .
+                                "WHERE a.id < " .
+                                "(SELECT a.id FROM " . $this->_name . " AS a LEFT JOIN urls AS u ON a.url_id = u.id WHERE u.url = ?) " .
                                 "AND is_deleted = 0 " .
                                 "AND article_type_id = 3 " .
                                 "AND status_id = 1 " .
@@ -174,13 +166,15 @@ class ArticlesModel extends DefaultModel {
      */
     public function getNextT($url) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT title, url " .
-                                "FROM " . $this->_name . " " .
-                                "WHERE id > (SELECT id FROM " . $this->_name . " WHERE url = ?) " .
+        $query = $db->prepare("SELECT a.title, a.url_id, u.url " .
+                                "FROM " . $this->_name . " AS a " .
+                                "LEFT JOIN urls AS u ON a.url_id = u.id " .
+                                "WHERE a.id > " .
+                                "(SELECT a.id FROM " . $this->_name . " AS a LEFT JOIN urls AS u ON a.url_id = u.id WHERE u.url = ?) " .
                                 "AND is_deleted = 0 " .
                                 "AND article_type_id = 3 " .
                                 "AND status_id = 1 " .
-                                "ORDER BY created_at ASC " .
+                                "ORDER BY created_at DESC " .
                                 "LIMIT 1;");
         $query->execute([$url]);
         return $query;
