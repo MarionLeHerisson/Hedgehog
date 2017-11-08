@@ -12,6 +12,7 @@ class articleController {
 
 		$prev = '';
 		$next = '';
+		$comments = '';
 
 	  	if($article['article_type_id'] == 3) {
 	  		require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
