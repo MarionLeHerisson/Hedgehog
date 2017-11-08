@@ -1,4 +1,5 @@
 <hr>
+<div class="col-md-12">
   <?php if($prev['url'] != ''): ?>
 
   <div id="prev">
@@ -17,3 +18,4 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
   </div>
   <?php endif; ?>
+</div>

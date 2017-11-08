@@ -1,11 +1,21 @@
-<h4>Ajouter un commentaire</h4>
-<form>
-	<div class="form-group">
-        <label for="yourname">Votre nom* :</label>
-        <input type="text" id="yourname" name="yourname">
-    </div>
-	<div class="form-group">
-        <label for="yourcomment">Votre commentaire :</label>
-        <input type="textarea" id="yourcomment" name="yourcomment">
-    </div>
-</form>
+<div class="col-md-12">
+
+	<h3>Ajouter un commentaire</h3>
+
+	 <div class="answer">
+	 <div class="media">
+		<div class="form-group">
+	        <input class="form-control media-heading title" type="text"
+	        id="yourname" name="yourname" placeholder="Votre nom">
+	    </div>
+		<div class="form-group">
+	        <textarea class="form-control" type="textarea"
+	        id="yourcomment" name="yourcomment" placeholder="Votre commentaire"></textarea>
+	    </div>
+	</div>
+
+	</div>
+
+
+
+</div>

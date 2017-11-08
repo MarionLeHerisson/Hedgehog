@@ -104,3 +104,25 @@ _grid.scss:71
     display: block;
     float: left;
 }
+
+/* comments */
+.answer {
+    margin-left:40px;
+    margin-top:5px;
+    border-left: solid 1px #c7cacb;
+}
+
+.media {
+    content: ' ';
+    margin-left: 15px;
+}
+
+.media-heading:before {
+    content: '';
+    width: 10px;
+    height: 1px;
+    background: #c7cacb;
+    position: absolute;
+    margin-left: -16px;
+    margin-top: 8px;
+}

@@ -16,20 +16,22 @@
   require_once(BASE_PATH . 'Application/View/blocks/nextprev.php');
 }?>
 
-<hr>
-
+<!-- C O M M E N T S -->
 <?php
-    if($comments != '') {
+    if($comments != '' || DEBUG == 1) {
         require_once(BASE_PATH . 'Application/View/blocks/comments.php');
       }
       require_once(BASE_PATH . 'Application/View/blocks/addComment.php');
 ?>
+
+
 </div>
 
 <!-- A S I D E -->
 <?php if($article['article_type_id'] == 3) {
   require_once(BASE_PATH . 'Application/View/aside.php');
 } ?>
+
 
 <script type="text/javascript">
 	showPreview('-intro');
