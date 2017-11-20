@@ -166,6 +166,8 @@ class AdminAjax {
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $msg           = '<ul>';
 
+        die(print_r($fileData));
+
         // Check file size
         if ($fileData["size"] > 10485760 || $fileData["error"] == 1 || $fileData["error"] == 2) {
             $msg .= "<li>Your file is too large.</li>";
