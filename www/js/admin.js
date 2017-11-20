@@ -57,7 +57,7 @@ let createUrl = function () {
         $.each(files, function(key, value) {
             data.append(key, value);
         });
-console.log(data);
+
         $.ajax({
             url: ajaxUrl,
             type: 'POST',
