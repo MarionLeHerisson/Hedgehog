@@ -18,10 +18,7 @@
 
 <!-- C O M M E N T S -->
 <?php
-    if($comments != '' || DEBUG == 1) {
-        require_once(BASE_PATH . 'Application/View/blocks/comments.php');
-      }
-      require_once(BASE_PATH . 'Application/View/blocks/addComment.php');
+    require_once(BASE_PATH . 'Application/View/blocks/comments.php');
 ?>
 
 

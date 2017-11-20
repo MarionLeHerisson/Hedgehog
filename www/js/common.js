@@ -86,6 +86,10 @@ function countDays() {
     $('#daysCount').html(Math.floor(count));
 }
 
+function addComment() {
+    alert('Michel est pas qu\'un peu relou');
+}
+
 $(document).ready(function () {
     countDays();
 });
