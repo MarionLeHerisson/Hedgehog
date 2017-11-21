@@ -160,7 +160,7 @@ class AdminAjax {
 
         require_once(BASE_PATH . 'library/images.php');
 
-        $target_dir    = BASE_PATH . "www\\Medias\\uploads\\";
+        $target_dir    = BASE_PATH . "www/Medias/uploads/";
         $target_file   = $target_dir . basename($fileData["name"]);
         $status        = 'ok';
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
