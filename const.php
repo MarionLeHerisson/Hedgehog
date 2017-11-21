@@ -11,6 +11,7 @@ if($_SERVER['HTTP_HOST'] == 'localhost') {
     define('DEBUG', 1);
 
     ini_set("upload_max_filesize", '1000000000');
+    ini_set("upload_tmp_dir", BASE_PATH . 'tmp'); 	// Gives it the same rights as your project
 }
 
 /* P R O D U C T I O N   E N V */
