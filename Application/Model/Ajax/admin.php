@@ -160,7 +160,7 @@ class AdminAjax {
 
         require_once(BASE_PATH . 'library/images.php');
 
-        $target_dir    = BASE_PATH . "www\Medias\uploads\\";
+        $target_dir    = BASE_PATH . "www\\Medias\\uploads\\";
         $target_file   = $target_dir . basename($fileData["name"]);
         $status        = 'ok';
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -200,7 +200,15 @@ class AdminAjax {
             $msg .= "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($fileData["tmp_name"], $target_file)) {
+            if(!file_exists($fileData["tmp_name"])) {
+                $msg .= "File not found in tmp dir.";
+                $status = "ko";
+            }
+            else if (!is_dir($target_dir)) {
+                $msg .= "Target directory not found.";
+                $status = "ko";
+            }
+            else if (move_uploaded_file($fileData["tmp_name"], $target_file)) {
                 Images::resizeImage($target_file, 950, 1000);
 
                 die(json_encode([
