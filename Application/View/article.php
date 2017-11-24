@@ -18,7 +18,9 @@
 
 <!-- C O M M E N T S -->
 <?php
-    require_once(BASE_PATH . 'Application/View/blocks/comments.php');
+	if(DEBUG == 1) {
+    	require_once(BASE_PATH . 'Application/View/blocks/comments.php');
+	}
 ?>
 
 
