@@ -174,7 +174,7 @@ class ArticlesModel extends DefaultModel {
                                 "AND is_deleted = 0 " .
                                 "AND article_type_id = 3 " .
                                 "AND status_id = 1 " .
-                                "ORDER BY created_at DESC " .
+                                "ORDER BY created_at ASC " .
                                 "LIMIT 1;");
         $query->execute([$url]);
         return $query;
