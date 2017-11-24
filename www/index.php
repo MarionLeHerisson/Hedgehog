@@ -4,7 +4,6 @@ session_start();
 if($_SERVER['HTTP_HOST'] == 'localhost') {
     define('BASE_PATH', 'C:' . DIRECTORY_SEPARATOR . 'wamp64' . DIRECTORY_SEPARATOR . 'www' . DIRECTORY_SEPARATOR .
         'hedgehog' . DIRECTORY_SEPARATOR);
-
 } else {
     define('BASE_PATH', '/home/marion/');
 }
