@@ -2,7 +2,9 @@
 
 <div class="col-md-<?php echo ($article['article_type_id'] == 3) ? 6 : 8 ?>">
 	<h1><?php echo $article['title']; ?></h1>
-  <i><?php echo $article['created_at']; ?></i>
+  <?php if($article['article_type_id'] == 3 || $article['article_type_id'] == 1) {
+  	echo '<i>' . strtotime('dd m YY', $article['created_at']) . '</i>';
+  } ?>
 
   <hr>
 
@@ -18,7 +20,7 @@
 
 <!-- C O M M E N T S -->
 <?php
-	if(DEBUG == 1) {
+	if(DEBUG == 1 && $article['article_type_id'] != 5) {
     	require_once(BASE_PATH . 'Application/View/blocks/comments.php');
 	}
 ?>
