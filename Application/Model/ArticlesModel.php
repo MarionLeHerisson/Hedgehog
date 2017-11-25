@@ -76,8 +76,9 @@ class ArticlesModel extends DefaultModel {
      */
     public function getAllArticles($type) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT id, article_type_id, theme_id, author_id, title, intro, url, created_at " .
-                                "FROM " . $this->_name . " " .
+        $query = $db->prepare("SELECT a.id, article_type_id, theme_id, author_id, title, intro, url_id, u.url, created_at " .
+                                "FROM " . $this->_name . " AS a " .
+                                "LEFT JOIN urls AS u ON u.id = a.url_id " .
                                 "WHERE is_deleted = 0 AND article_type_id = ? AND status_id = 1 " .
                                 "ORDER BY theme_id DESC;");
         $query->execute([$type]);
