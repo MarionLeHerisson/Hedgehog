@@ -82,7 +82,7 @@ CREATE TABLE articles (
   article_type_id INT NOT NULL,
   theme_id INT DEFAULT NULL,
   author_id INT NOT NULL DEFAULT 1,
-  title VARCHAR (50) NOT NULL,
+  title VARCHAR (100) NOT NULL,
   intro TEXT DEFAULT NULL,
 --  issue_sum VARCHAR(100) DEFAULT NULL,
 --  expected VARCHAR(255) DEFAULT NULL,
