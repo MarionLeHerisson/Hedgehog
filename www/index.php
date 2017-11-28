@@ -43,10 +43,10 @@ if(array_key_exists('REDIRECT_URL', $_SERVER)) {
         define('THISPAGE', $page);
     }
 }
-else {
+/*else {
     $article = $ArticlesModel->getLastArticle(3)->fetch(PDO::FETCH_ASSOC);
     define('THISPAGE', $article['url']);
-}
+}*/
 
 require_once(BASE_PATH . 'Application/Model/UrlsModel.php');
 $UrlsModel = new UrlsModel();

@@ -36,7 +36,7 @@ class ArticleService {
                     $html .= '</ul>';
                 }
                 $currentTheme = $articleTheme;
-                $html .= '<h3>' . $currentTheme . '</h3>';
+                $html .= '<h3>' . ucfirst($currentTheme) . '</h3>';
                 $html .= '<ul>';
             }
             $html .= '<li><a href="' . $article['url'] . '" target="_self">' . $article['title'] . '</a>' .
