@@ -10,6 +10,7 @@ if($_SERVER['HTTP_HOST'] == 'localhost') {
 
 require_once(BASE_PATH . "const.php");
 require_once(BASE_PATH . "library/strings.php");
+require_once(BASE_PATH . "library/utils.php");
 
 // Handle connection
 if(isset($_POST['login']) && isset($_POST['pwd'])) {
@@ -80,4 +81,5 @@ require_once(BASE_PATH . 'Application/Controller/footerController.php');
 $footer = footerController::getFooter();
 
 require_once(BASE_PATH . 'Application/View/basics/footer.php');
+require_once(BASE_PATH . 'Application/View/blocks/scrollButton.php');
 ?>

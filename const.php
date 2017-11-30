@@ -1,20 +1,15 @@
 <?php
 
-/* W I N D O W S   L O C A L   C O N F */
-if($_SERVER['HTTP_HOST'] == 'localhost') {
-    define('BASE_URL', 'http://localhost' . DIRECTORY_SEPARATOR . 'hedgehog' . DIRECTORY_SEPARATOR . 'www' . DIRECTORY_SEPARATOR);
-    define('HOSTNAME', 'localhost');
-    define('DBNAME', 'hedgehog');
-    define('DBLOGIN', 'root');
-    define('DBPWD', 'root');
-    ini_set("display_errors", 1);
-    define('DEBUG', 1);
+require_once(BASE_PATH . "library/utils.php");
 
-    ini_set("upload_max_filesize", '1000000000');
-    ini_set("upload_tmp_dir", BASE_PATH . 'tmp'); 	// Gives it the same rights as your project
-}
+define('BASE_URL',  Utils::getConfig('base_url'));
+define('HOSTNAME',  Utils::getConfig('hostname'));
+define('DBNAME',    Utils::getConfig('dbname'));
+define('DBLOGIN',   Utils::getConfig('dblogin'));
+define('DBPWD',     Utils::getConfig('dbpwd'));
 
-/* P R O D U C T I O N   E N V */
-else {
-    require_once('prod_const.php');
-}
+define('DEBUG',     Utils::getConfig('debug'));
+ini_set("display_errors", Utils::getConfig('display_errors'));
+
+ini_set("upload_max_filesize", Utils::getConfig('upload_max_filesize'));
+ini_set("upload_tmp_dir", BASE_PATH . 'tmp'); 	// Gives it the same rights as your project
