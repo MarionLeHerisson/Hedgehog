@@ -8,4 +8,13 @@
         id="yourcomment" name="yourcomment" placeholder="Votre commentaire"></textarea>
     </div>
 	<button type="button" class="btn btn-warning" onclick="addComment()">Commenter !</button>
+
+	<br><br>
+<!-- todo : add loader -->
+	<div id="respCom" class="none alert alert-dismissible fade in col-md-12" role="alert">
+        <button type="button" class="close" onclick="closePopin()">
+            <span>×</span>
+        </button>
+        <p id="respComMsg"></p>
+    </div>
 </div>

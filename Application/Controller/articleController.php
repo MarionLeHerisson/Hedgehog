@@ -5,8 +5,9 @@
  * Date: 27/08/2017
  * Time: 10:33
  */
+require_once(BASE_PATH . 'Application/Controller/defaultController.php');
 
-class articleController {
+class articleController extends DefaultController {
 
 	public function indexAction($article) {
 
@@ -17,13 +18,42 @@ class articleController {
 	  	if($article['article_type_id'] == 3) {
 	  		require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
 			$articlesManager = new ArticlesModel();
+			$url = $article['url'];
 
-		  	$prev = $articlesManager->getPrevT($article['url'])->fetch(PDO::FETCH_ASSOC);
-		    $next = $articlesManager->getNextT($article['url'])->fetch(PDO::FETCH_ASSOC);
+		  	$prev = $articlesManager->getPrevT($url)->fetch(PDO::FETCH_ASSOC);
+		    $next = $articlesManager->getNextT($url)->fetch(PDO::FETCH_ASSOC);
+
+		    $comments = $this->getComments(0, $url);
 	  	}
 
 	    require_once(BASE_PATH . 'Application/View/basics/head.php');
 	    require_once(BASE_PATH . 'Application/View/basics/nav.php');
 	    require_once(BASE_PATH . 'Application/View/article.php');
+	}
+
+	public function getComments($parentId, $url) {
+
+		require_once(BASE_PATH . 'Application/Model/commentsModel.php');
+		$commentsManager = new CommentsModel();
+
+		$comments = $commentsManager->getComments($parentId, $url);
+
+		if(is_array($comments) && array_key_exists('id', $comments)) {
+			if($parentId != 0) {
+				echo '<div class="answer">';
+			}
+			foreach ($comments as $comment) {
+
+				echo '<div class="media"><h4 class="media-heading">' . $comment['login'] . '</h4>
+						<p>' . $comment['content'] . '<br>' .
+						//'<a class="nswrlnk" href="" target="_self">répondre</a>' .
+						'</p></div>';
+
+				$this->getComments($comment['id'], $url);
+			}
+			if($parentId != 0) {
+				echo '</div>';
+			}
+		}
 	}
 }

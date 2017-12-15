@@ -10,6 +10,7 @@
 
 	<textarea id="editor-intro" class="none"><?php echo $article['intro'];?></textarea>
 	<textarea id="editor-content" class="none"><?php echo $article['content'];?></textarea>
+	<input id="url_id" type="text" name="url_id" class="none" value="<?php echo $article['url_id']?>">
 
 	<div id="preview-intro"></div>
 	<div id="preview-content"></div>

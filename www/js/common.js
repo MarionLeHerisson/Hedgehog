@@ -87,7 +87,16 @@ function countDays() {
 }
 
 function addComment() {
-    alert('Michel est pas qu\'un peu relou');
+
+    let name = $('#yourname').val(),
+        content = $('#yourcomment').val(),
+        url_id = $('#url_id').val(),
+        parent = 0;
+
+    myAjax('article', 'addComment', [name, content, url_id, parent], function(json) {
+        let ret = JSON.parse(json);
+        showMessage('respCom', ret.msg, false);
+    })
 }
 
 $(document).ready(function () {

@@ -1,7 +1,7 @@
 <div class="col-md-2 col-sm-3 offset-sm-1 blog-sidebar">
   <div class="sidebar-module sidebar-module-inset">
     <h4>Mais qui êtes-vous ?</h4>
-    <p>Marion Hurteau est une étudiante et développeuse parisienne qui a entrepris un voyage d'environ neuf mois en <strong>Nouvelle-Zélande</strong>. Elle vous raconte ici ses aventures !</p>
+    <p>Marion Hurteau est une étudiante et développeuse parisienne qui a entrepris un voyage d'environ huit mois en <strong>Nouvelle-Zélande</strong>. Elle vous raconte ici ses aventures !</p>
   </div>
 
   <div class="sidebar-module">

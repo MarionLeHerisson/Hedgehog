@@ -14,7 +14,7 @@
                 <li <?php echo isset($article['article_type_id']) && $article['article_type_id'] == 3 ? 'class="active"' : '' ?>>
                     <a href="<?php echo BASE_URL ?>" target="_self">Blog</a>
                 </li>
-                <li <?php echo THISPAGE == 'articles' || $article['article_type_id'] == 1 ? 'class="active"' : '' ?>>
+                <li <?php echo THISPAGE == 'articles' || (isset($article) && $article['article_type_id'] == 1) ? 'class="active"' : '' ?>>
                     <a href="<?php echo BASE_URL ?>articles" target="_self">Articles</a>
                 </li>
                     <?php if (DEBUG == 1) : ?>

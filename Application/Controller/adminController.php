@@ -6,16 +6,13 @@
  * Time: 19:06
  */
 
-class AdminController {
+require_once(BASE_PATH . 'Application/Controller/defaultController.php');
+class AdminController extends DefaultController {
 
     public function indexAction() {
 
         if(isset($_POST['action']) && !empty($_POST['action'])) {
             $this->Ajax($_POST);
-        } else if(isset($_FILES) && !empty($_FILES)) {
-            $post['action'] = 'uploadImg';
-            $post['param'] = $_FILES[0];
-            $this->ajax($post);
         }
 
         require_once(BASE_PATH . 'Application/View/basics/head.php');
@@ -35,25 +32,6 @@ class AdminController {
         else {
             require_once(BASE_PATH . 'Application/View/admin/connection.php');
         }
-    }
-
-    /**
-     * handle ajax methods
-     *
-     * @param array $post
-     */
-    private function ajax($post) {
-        $action = $post['action'];
-        $param = [];
-
-        if(isset($post['param'])) {
-            $param = $post['param'];
-        }
-
-        require_once(BASE_PATH . 'Application/Model/Ajax/admin.php');
-        $ajaxApi = new AdminAjax();
-
-        $ajaxApi->$action($param);
     }
 
     /**

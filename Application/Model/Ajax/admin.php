@@ -278,4 +278,23 @@ class AdminAjax {
         die(json_encode(($article)));
 
     }
+
+// todo : put in article.php & remove from here
+    public function addComment($data) {
+
+        require_once(BASE_PATH . 'Application/Model/CommentsModel.php');
+        $commentsManager = new CommentsModel();
+
+        $comment['author_id'] = $data[0];
+        $comment['content']   = $data[1];
+        $comment['url_id']    = $data[2];
+        $comment['parent_id'] = $data[3];
+
+        $commentsManager->insertComment($comment);
+
+        die(json_encode([
+                'stat'      => 'ok',
+                'msg'       => 'Commentaire ajouté !'
+            ]));
+    }
 }
