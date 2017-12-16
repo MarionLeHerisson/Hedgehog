@@ -105,7 +105,7 @@ CREATE TABLE articles (
 CREATE TABLE comments (
   id INT NOT NULL AUTO_INCREMENT,
   content TEXT NOT NULL,
-  author_id INT DEFAULT NULL,
+  author VARCHAR(100) NOT NULL,
   author_name VARCHAR(25) NOT NULL,
   article_url_id INT NOT NULL,
   parent_id INT DEFAULT NULL,
@@ -113,7 +113,6 @@ CREATE TABLE comments (
   is_deleted INT NOT NULL DEFAULT 0,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (author_id) REFERENCES users(id),
   FOREIGN KEY (article_url_id) REFERENCES urls(id),
   FOREIGN KEY (parent_id) REFERENCES comments(id)
 );

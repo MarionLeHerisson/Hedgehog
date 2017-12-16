@@ -33,7 +33,7 @@ class articleController extends DefaultController {
 
 	public function getComments($parentId, $url) {
 
-		require_once(BASE_PATH . 'Application/Model/commentsModel.php');
+		require_once(BASE_PATH . 'Application/Model/CommentsModel.php');
 		$commentsManager = new CommentsModel();
 
 		$comments = $commentsManager->getComments($parentId, $url)->fetchAll(PDO::FETCH_ASSOC);
