@@ -23,7 +23,7 @@ class articleController extends DefaultController {
 		  	$prev = $articlesManager->getPrevT($url)->fetch(PDO::FETCH_ASSOC);
 		    $next = $articlesManager->getNextT($url)->fetch(PDO::FETCH_ASSOC);
 
-		    $comments = $this->getComments(0, $url);
+		    $htmlComments = $this->getComments(0, $url);
 	  	}
 
 	    require_once(BASE_PATH . 'Application/View/basics/head.php');
@@ -36,15 +36,16 @@ class articleController extends DefaultController {
 		require_once(BASE_PATH . 'Application/Model/commentsModel.php');
 		$commentsManager = new CommentsModel();
 
-		$comments = $commentsManager->getComments($parentId, $url);
+		$comments = $commentsManager->getComments($parentId, $url)->fetchAll(PDO::FETCH_ASSOC);
+		$htmlComments = '';
 
-		if(is_array($comments) && array_key_exists('id', $comments)) {
+		if(is_array($comments)) {
 			if($parentId != 0) {
-				echo '<div class="answer">';
+				$htmlComments .= '<div class="answer">';
 			}
 			foreach ($comments as $comment) {
 
-				echo '<div class="media"><h4 class="media-heading">' . $comment['login'] . '</h4>
+				$htmlComments .= '<div class="media"><h4 class="media-heading">' . $comment['author'] . '</h4>
 						<p>' . $comment['content'] . '<br>' .
 						//'<a class="nswrlnk" href="" target="_self">répondre</a>' .
 						'</p></div>';
@@ -52,8 +53,10 @@ class articleController extends DefaultController {
 				$this->getComments($comment['id'], $url);
 			}
 			if($parentId != 0) {
-				echo '</div>';
+				$htmlComments .= '</div>';
 			}
 		}
+
+		return $htmlComments;
 	}
 }

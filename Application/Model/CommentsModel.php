@@ -13,17 +13,14 @@ class CommentsModel extends DefaultModel {
 	**/
 	public function getComments($id, $url) {
 		$db = $this->connectDb();
-		$query = $db->prepare("SELECT c.id, c.content, c.parent_id, c.created_at, c.author_id" .
+		$query = $db->prepare("SELECT c.id, c.content, c.parent_id, c.created_at, c.author" .
 								", u.id AS uid, u.url " .
-								", usr.id AS usrid, usr.login " .
 								"FROM " . $this->_name . " AS c " .
 								"LEFT JOIN urls AS u " .
 								"ON u.id = c.article_url_id " .
-								"LEFT JOIN users AS usr " .
-								"ON usr.id = c.author_id " .
 								"WHERE c.is_deleted = 0 " .
 								"AND c.parent_id = ? " .
-								"AND u.url = ?" .
+								"AND u.url = ? " .
 								"ORDER BY c.created_at;");
 
 		$query->execute([$id, $url]);

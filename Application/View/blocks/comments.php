@@ -19,7 +19,7 @@
 
 <?php
 	include_once(BASE_PATH . 'Application/View/blocks/addComment.html');
-	echo $comments;
+	echo $htmlComments;
 ?>
 <!--
 <div class="media">
