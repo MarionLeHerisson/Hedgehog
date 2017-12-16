@@ -21,7 +21,7 @@
 
 <!-- C O M M E N T S -->
 <?php
-	if(DEBUG == 1 && $article['article_type_id'] != 5) {
+	if($article['article_type_id'] != 5) {
     	require_once(BASE_PATH . 'Application/View/blocks/comments.php');
 	}
 ?>
