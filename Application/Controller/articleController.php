@@ -76,7 +76,7 @@ class articleController extends DefaultController {
 		$htmlArticles = '';
 
 		foreach ($lastArticles as $article) {
-			$htmlArticles .= '<li><span class="shortDate">' . Strings::shortDate($article['created_at']) . '</span> - <a href="' . $article['url'] . '">' . $article['title'] . '</a></li>';
+			$htmlArticles .= '<li><span class="shortDate">' . Strings::shortDate($article['created_at']) . '</span> - <a href="' . $article['url'] . '" target="_self">' . $article['title'] . '</a></li>';
 		}
 
 		return $htmlArticles;
