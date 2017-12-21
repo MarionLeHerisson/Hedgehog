@@ -16,21 +16,43 @@ class Strings {
     }
 
     /**
-     * Return franch date from a SQL date
+     * Return french date from a SQL date
      *
      * @param string $date
      * @return bool|string
      * @author Marion
      */
     public static function frenchDate($date) {
-        $days = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'];
-        $months = ['', 'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'decembre'];
+
+        $days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+        $months = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
+
         $timestamp = strtotime($date);
+
         $strDay = $days[date('w', $timestamp)];
         $intDay = date('j', $timestamp);
-        $month = $months[date('n', $timestamp)];
-        $hour = date('H:i' , $timestamp);
-        return $strDay . ' ' . $intDay . ' ' . $month . ' ' .  date('Y', $timestamp) . '<br>à ' . $hour;
+        $month  = $months[date('n', $timestamp)];
+        $year   = date('Y', $timestamp);
+
+        return $strDay . ' ' . $intDay . ' ' . $month . ' ' .  $year;
+    }
+
+    /**
+     * Return short date from a SQL date
+     *
+     * @param string $date
+     * @return bool|string
+     * @author Marion
+     */
+    public static function shortDate($date) {
+
+        $timestamp = strtotime($date);
+
+        $day   = date('d', $timestamp);
+        $month = date('n', $timestamp) + 1;
+        //$year  = date('Y', $timestamp);
+
+        return $day . '/' . $month /*. '/' . $year*/;
     }
 
     /**

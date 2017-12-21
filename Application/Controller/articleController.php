@@ -23,6 +23,7 @@ class articleController extends DefaultController {
 		  	$prev = $articlesManager->getPrevT($url)->fetch(PDO::FETCH_ASSOC);
 		    $next = $articlesManager->getNextT($url)->fetch(PDO::FETCH_ASSOC);
 
+		    $lastPosts    = $this->getLastPosts(NB_LAST);
 		    $htmlComments = $this->getComments(0, $url);
 	  	}
 
@@ -31,6 +32,9 @@ class articleController extends DefaultController {
 	    require_once(BASE_PATH . 'Application/View/article.php');
 	}
 
+	/**
+	* Get all comments for an article or the answers of a comment
+	*/
 	public function getComments($parentId, $url) {
 
 		require_once(BASE_PATH . 'Application/Model/CommentsModel.php');
@@ -58,5 +62,23 @@ class articleController extends DefaultController {
 		}
 
 		return $htmlComments;
+	}
+
+	/**
+	* Get the last posts
+	* @param int $number the number of recent posts to get
+	*/
+	public function getLastPosts($number) {
+		require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+		$articlesManager = new ArticlesModel();
+
+		$lastArticles = $articlesManager->getLastArticle(3, $number)->fetchAll(PDO::FETCH_ASSOC);
+		$htmlArticles = '';
+
+		foreach ($lastArticles as $article) {
+			$htmlArticles .= '<li><span class="shortDate">' . Strings::shortDate($article['created_at']) . '</span> - <a href="' . $article['url'] . '">' . $article['title'] . '</a></li>';
+		}
+
+		return $htmlArticles;
 	}
 }

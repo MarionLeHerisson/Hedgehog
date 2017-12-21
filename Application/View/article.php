@@ -3,7 +3,7 @@
 <div class="col-md-<?php echo ($article['article_type_id'] == 3) ? 6 : 8 ?>">
 	<h1><?php echo $article['title']; ?></h1>
   <?php if($article['article_type_id'] == 3 || $article['article_type_id'] == 1) {
-  	echo '<i>' . date('l j F Y', strtotime($article['created_at'])) . '</i>';
+  	echo '<i>' . Strings::frenchDate($article['created_at']) . '</i>';
   } ?>
 
   <hr>

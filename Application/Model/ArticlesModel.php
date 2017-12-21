@@ -121,7 +121,7 @@ class ArticlesModel extends DefaultModel {
      * @param integer $type
      * @return PDOStatement
      */
-    public function getLastArticle($type) {
+    public function getLastArticle($type, $limit = 1) {
         $db = $this->connectDb();
         $query = $db->prepare("SELECT a.id, a.article_type_id, a.theme_id, a.author_id, a.title, a.intro, a.content, a.url_id, a.status_id, a.created_at" .
                     //            ",m.id as main_media_id, m.is_main " .
@@ -134,7 +134,7 @@ class ArticlesModel extends DefaultModel {
                                 "WHERE a.article_type_id = ? " .
                                 "AND a.status_id = 1 " .
                                 "ORDER BY created_at DESC " .
-                                "LIMIT 1;");
+                                "LIMIT " . $limit . ";");
         $query->execute([$type]);
         return $query;
     }

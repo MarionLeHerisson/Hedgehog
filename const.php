@@ -13,3 +13,5 @@ ini_set("display_errors", Utils::getConfig('display_errors'));
 
 ini_set("upload_max_filesize", Utils::getConfig('upload_max_filesize'));
 ini_set("upload_tmp_dir", BASE_PATH . 'tmp'); 	// Gives it the same rights as your project
+
+define('NB_LAST', Utils::getConfig('nb_last'), 10);
