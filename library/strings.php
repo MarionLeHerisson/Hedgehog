@@ -49,7 +49,7 @@ class Strings {
         $timestamp = strtotime($date);
 
         $day   = date('d', $timestamp);
-        $month = date('n', $timestamp) + 1;
+        $month = date('n', $timestamp);
         //$year  = date('Y', $timestamp);
 
         return $day . '/' . $month /*. '/' . $year*/;
