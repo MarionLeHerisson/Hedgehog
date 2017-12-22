@@ -30,6 +30,7 @@
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input class="form-control" type="text" id="title" name="title" placeholder="Title of new or existing article">
+                    <div id="articles_dropdown"></div>
                 </div>
                 <div class="form-group">
                     <label for="url">Url</label>

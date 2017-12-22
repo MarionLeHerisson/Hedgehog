@@ -120,26 +120,30 @@ let createUrl = function () {
 
     findArticle = function () {
   //      window.setTimeout(function () {
-        let keyword = $('#title').val();
-        $('#articles_dropdown').remove();
+        let keyword = $('#title').val(),
+            div = $('#articles_dropdown');
 
-        myAjax(ajaxUrl, 'findArticle', keyword, function (data) {
-            let res = JSON.parse(data),
-                div = $('<div id="articles_dropdown">'),
-                html = '<ul>',
-                input = $('#title');
+        if(keyword != '') {
 
-            $.each(res.articles, function (key, value) {
-                html += '<li class="dropArticle" data-id="' + value.id + '">' + value.title + '</li>'
+            myAjax(ajaxUrl, 'findArticle', keyword, function (data) {
+                let res = JSON.parse(data),
+                    html = '<ul>',
+                    input = $('#title');
+
+                $.each(res.articles, function (key, value) {
+                    html += '<li class="dropArticle" data-id="' + value.id + '">' + value.title + '</li>'
+                });
+
+                html += '</ul>';
+                div.html(html);
+                $('.dropArticle').unbind();
+                $('.dropArticle').click(fillForm);
             });
+         // }, 600);
 
-            html += '</ul>';
-            div.html(html);
-            input.after(div);
-            $('.dropArticle').unbind();
-            $('.dropArticle').click(fillForm);
-        });
-//        }, 600);
+        } else {
+            div.html('');
+        }
     },
 
     fillForm = function () {
@@ -163,6 +167,8 @@ let createUrl = function () {
             showTheme();
             res.theme_id !== null ? theme.val(res.theme_id) : theme.val(undefined);
         });
+
+        $('#articles_dropdown').html('');
     },
 
     init = function () {
@@ -172,7 +178,7 @@ let createUrl = function () {
     binds = function () {
         // Article edition
         $('#title').on('blur', createUrl);
-        $('#title').on('keydown', findArticle);
+        $('#title').on('keyup', findArticle);
         $('#createArticle').click(saveArticle);
         $('#resetArticle').click(clearForm);
         $('#type').on('change', showTheme);
