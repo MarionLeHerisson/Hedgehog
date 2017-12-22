@@ -17,6 +17,9 @@ a, a:hover {
 
 li {
     list-style: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 img {
