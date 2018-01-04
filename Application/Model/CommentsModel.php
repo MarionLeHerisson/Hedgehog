@@ -51,7 +51,7 @@ class CommentsModel extends DefaultModel {
 		$db = $this->connectDb();
 		$query = $db->prepare("INSERT INTO " . $this->_name . "(content, author, article_url_id, parent_id) " .
 								"VALUES(?, ?, ?, ?);");
-		$query->execute([$comment['content'], $comment['author_id'], $comment['url_id'], $comment['parent_id']]);
+		$query->execute([$comment['content'], $comment['author'], $comment['url_id'], $comment['parent_id']]);
 
 		return $query;
 	}

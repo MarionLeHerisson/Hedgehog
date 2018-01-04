@@ -113,8 +113,8 @@ CREATE TABLE comments (
   is_deleted INT NOT NULL DEFAULT 0,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (article_url_id) REFERENCES urls(id),
-  FOREIGN KEY (parent_id) REFERENCES comments(id)
+  FOREIGN KEY (article_url_id) REFERENCES urls(id)
+  -- ,FOREIGN KEY (parent_id) REFERENCES comments(id)
 );
 
 CREATE TABLE logs (
