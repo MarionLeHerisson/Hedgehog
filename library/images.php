@@ -71,8 +71,8 @@ class Images {
 
         //chmod(BASE_PATH . 'www/Medias/uploads', 777);
         //chmod($img, 777);
-        die(exec('pwd'));
-        //die('convert ' . escapeshellarg($img) . ' -rotate ' . escapeshellarg($angle) . ' ' . escapeshellarg($img));
+
+//        die('convert ' . escapeshellarg($img) . ' -rotate ' . escapeshellarg($angle) . ' ' . escapeshellarg($img));
         exec('convert ' . escapeshellarg($img) . ' -rotate ' . escapeshellarg($angle) . ' ' . escapeshellarg($img));
     }
 }

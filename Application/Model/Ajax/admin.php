@@ -212,12 +212,12 @@ class AdminAjax {
                 Images::rotateImage($target_file, $angle);
                 Images::resizeImage($target_file, 950, 1000);
 
-                /*die(json_encode([
+                die(json_encode([
                     'status' => $status,
                     'msg'    => "The file ". basename($fileData["name"]). " has been uploaded.<br>" .
                                 "![" . $fileData["name"] . "](Medias/uploads/" . $fileData["name"] . ")",
                     'img'    => $target_file
-                ]));*/
+                ]));
 
             } else {
                 $msg .= "Sorry, there was an error uploading your file.";
