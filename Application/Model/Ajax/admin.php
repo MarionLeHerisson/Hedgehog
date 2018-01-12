@@ -209,7 +209,7 @@ class AdminAjax {
                 $status = "ko";
             }
             else if (move_uploaded_file($fileData["tmp_name"], $target_file)) {
-                Images::rotateImage($target_file, $angle);
+                Images::rotateImage($fileData["name"], $angle);
                 Images::resizeImage($target_file, 950, 1000);
 
                 die(json_encode([

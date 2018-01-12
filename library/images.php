@@ -72,7 +72,9 @@ class Images {
         //chmod(BASE_PATH . 'www/Medias/uploads', 777);
         //chmod($img, 777);
 
-//        die('convert ' . escapeshellarg($img) . ' -rotate ' . escapeshellarg($angle) . ' ' . escapeshellarg($img));
-        exec('convert ' . escapeshellarg($img) . ' -rotate ' . escapeshellarg($angle) . ' ' . escapeshellarg($img));
+        //die('convert ' . escapeshellarg($img) . ' -rotate ' . escapeshellarg($angle) . ' ' . escapeshellarg($img));
+        //exec('cd ' . BASE_PATH . ' www/Medias/uploads');
+        exec('cd ' . BASE_PATH . 'www/Medias/uploads && convert ' . escapeshellarg($img) . ' -rotate ' . escapeshellarg($angle) . ' ' . escapeshellarg($img));
+        //die('cd /mnt/c/wamp64/www/Hedgehog/www/Medias/uploads && convert ' . escapeshellarg($img) . ' -rotate ' . escapeshellarg($angle) . ' ' . escapeshellarg($img));
     }
 }
