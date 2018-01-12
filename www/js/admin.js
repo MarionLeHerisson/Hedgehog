@@ -44,7 +44,7 @@ let createUrl = function () {
     },
 
     clearForm = function () {
-        // $('#formEditArticle')[0].reset();
+        $('#formEditArticle')[0].reset();
     },
 
     addMainMedia = function (event) {
