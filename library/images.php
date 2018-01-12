@@ -58,4 +58,21 @@ class Images {
         imagedestroy($image);
         imagedestroy($tmp);
     }
+
+    /**
+     * Rotate an image
+     * @param string $img
+     * @param integer|boolean $angle
+     */
+    static public function rotateImage($img, $angle = false) {
+        if($angle == false) {
+            return;
+        }
+
+        //chmod(BASE_PATH . 'www/Medias/uploads', 777);
+        //chmod($img, 777);
+        die(exec('pwd'));
+        //die('convert ' . escapeshellarg($img) . ' -rotate ' . escapeshellarg($angle) . ' ' . escapeshellarg($img));
+        exec('convert ' . escapeshellarg($img) . ' -rotate ' . escapeshellarg($angle) . ' ' . escapeshellarg($img));
+    }
 }

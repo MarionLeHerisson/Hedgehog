@@ -11,8 +11,7 @@
         id="yourname" name="yourname" placeholder="Votre nom">
     </div>
 	<div class="form-group">
-        <textarea class="form-control" type="textarea"
-        id="yourcomment" name="yourcomment" placeholder="Votre commentaire"></textarea>
+        <textarea class="form-control" id="yourcomment" name="yourcomment" placeholder="Votre commentaire"></textarea>
     </div>
 	<button type="button" class="btn btn-warning" onclick="addComment()">Commenter !</button>
 </div> -->

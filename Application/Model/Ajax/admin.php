@@ -165,7 +165,7 @@ class AdminAjax {
         $status        = 'ok';
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $msg           = '<ul>';
-
+        $angle         = $_REQUEST['angle'];
 
         // Check file size
         if ($fileData["size"] > 10485760 || $fileData["error"] == 1 || $fileData["error"] == 2) {
@@ -209,14 +209,15 @@ class AdminAjax {
                 $status = "ko";
             }
             else if (move_uploaded_file($fileData["tmp_name"], $target_file)) {
+                Images::rotateImage($target_file, $angle);
                 Images::resizeImage($target_file, 950, 1000);
 
-                die(json_encode([
+                /*die(json_encode([
                     'status' => $status,
                     'msg'    => "The file ". basename($fileData["name"]). " has been uploaded.<br>" .
                                 "![" . $fileData["name"] . "](Medias/uploads/" . $fileData["name"] . ")",
                     'img'    => $target_file
-                ]));
+                ]));*/
 
             } else {
                 $msg .= "Sorry, there was an error uploading your file.";

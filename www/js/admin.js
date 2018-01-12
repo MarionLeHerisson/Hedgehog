@@ -27,7 +27,7 @@ let createUrl = function () {
                 article_type: $('#type').val(),
                 status : $('.toggle').hasClass('off') ? 0 : 1,
                 theme : theme === undefined ? null : theme,
-                author_id : $('#author_id').val(),
+                author_id : $('#author_id').val()
                 // main_media : $('#main_media').val()
             };
 
@@ -49,14 +49,21 @@ let createUrl = function () {
 
     addMainMedia = function (event) {
         let files = event.target.files,
-            data = new FormData(),
-            label = 'mainImg';
+            data  = new FormData(),
+            label = 'mainImg',
+            angle = false;
+
+        if($('#media_rotate').is(':checked')) {
+            angle = $('#rotate_angle').val();
+        }
 
         showMessage(label, '<img src="Medias/loader.gif">', false);
 
         $.each(files, function(key, value) {
             data.append(key, value);
         });
+
+        data.append('angle', angle);
 
         $.ajax({
             url: ajaxUrl,
@@ -171,6 +178,14 @@ let createUrl = function () {
         $('#articles_dropdown').html('');
     },
 
+    showDropdown = function () {
+        if($('#media_rotate').is(':checked')) {
+            $('#rotate_angle').parent().removeClass('none');
+        } else {
+            $('#rotate_angle').parent('div').addClass('none');
+        }
+    },
+
     init = function () {
         showTheme();
     },
@@ -183,6 +198,9 @@ let createUrl = function () {
         $('#resetArticle').click(clearForm);
         $('#type').on('change', showTheme);
         $('input[type=file]').on('change', addMainMedia);
+
+        // Add media
+        $('#media_rotate').on('change', showDropdown);
 
         // Manage articles
         $('#list-type').on('change', displayAllArticles);
