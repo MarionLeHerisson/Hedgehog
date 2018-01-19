@@ -47,9 +47,11 @@
 
         <base target="_blank">
 
-        <!-- Prefetching -->
+        <!-- Prefetching & prerendering -->
         <link rel="prefetch next" href="<?php echo $next['url']; ?>">
         <link rel="prefetch prev" href="<?php echo $prev['url']; ?>">
+        <link rel="prerender" href="<?php echo $next['url']; ?>">
+        <link rel="prerender" href="<?php echo $prev['url']; ?>">
     </head>
 
     <body>
