@@ -25,7 +25,7 @@ class articleController extends DefaultController {
 
 		    $lastPosts    = $this->getLastPosts(NB_LAST);
 		    $htmlComments = $this->getComments(0, $url);
-	  	}
+    	}
 
 	    require_once(BASE_PATH . 'Application/View/basics/head.php');
 	    require_once(BASE_PATH . 'Application/View/basics/nav.php');
@@ -40,7 +40,8 @@ class articleController extends DefaultController {
 		require_once(BASE_PATH . 'Application/Model/CommentsModel.php');
 		$commentsManager = new CommentsModel();
 
-		$comments = $commentsManager->getComments($parentId, $url)->fetchAll(PDO::FETCH_ASSOC);
+		$comments = $commentsManager->getComments($parentId, $url)
+					->fetchAll(PDO::FETCH_ASSOC);
 		$htmlComments = '';
 
 		if(is_array($comments)) {
@@ -49,10 +50,11 @@ class articleController extends DefaultController {
 			}
 			foreach ($comments as $comment) {
 
-				$htmlComments .= '<div class="media"><h4 class="media-heading">' . $comment['author'] . '</h4>
-						<p>' . $comment['content'] . '<br>' .
-						//'<a class="nswrlnk" href="" target="_self">répondre</a>' .
-						'</p></div>';
+				$htmlComments .= '<div class="media"><h4 class="media-heading">'
+								. $comment['author'] . '</h4>
+								<p>' . $comment['content'] . '<br>' .
+								//'<a class="nswrlnk" href="" target="_self">répondre</a>' .
+								'</p></div>';
 
 				$this->getComments($comment['id'], $url);
 			}
@@ -76,7 +78,10 @@ class articleController extends DefaultController {
 		$htmlArticles = '';
 
 		foreach ($lastArticles as $article) {
-			$htmlArticles .= '<li><span class="shortDate">' . Strings::shortDate($article['created_at']) . '</span> - <a href="' . $article['url'] . '" target="_self">' . $article['title'] . '</a></li>';
+			$htmlArticles .= '<li><span class="shortDate">' .
+				Strings::shortDate($article['created_at']) . '</span> - <a href="'
+				. $article['url'] . '" target="_self">' . $article['title']
+				. '</a></li>';
 		}
 
 		return $htmlArticles;

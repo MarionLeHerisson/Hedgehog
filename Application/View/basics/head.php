@@ -46,6 +46,10 @@
         <?php echo THISPAGE == 'admin' ? '<script src="js/admin.js"></script>' : ''; ?>
 
         <base target="_blank">
+
+        <!-- Prefetching -->
+        <link rel="prefetch next" href="<?php echo $next['url']; ?>">
+        <link rel="prefetch prev" href="<?php echo $prev['url']; ?>">
     </head>
 
     <body>
