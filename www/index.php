@@ -37,17 +37,23 @@ if(array_key_exists('REDIRECT_URL', $_SERVER)) {
     $len = sizeof($exploded) - 1;
     $page = $exploded[$len];
 
+/*
+    // if no page name, goes to last article
     if($page == '') {
         $article = $ArticlesModel->getLastArticle(3)->fetch(PDO::FETCH_ASSOC);
         define('THISPAGE', $article['url']);
     } else {
         define('THISPAGE', $page);
     }
+*/
+    // if no page name, goes to home (=articles)
+    if($page == '') {
+        $article = $ArticlesModel->getLastArticle(3)->fetch(PDO::FETCH_ASSOC);
+        define('THISPAGE', 'articles');
+    } else {
+        define('THISPAGE', $page);
+    }
 }
-/*else {
-    $article = $ArticlesModel->getLastArticle(3)->fetch(PDO::FETCH_ASSOC);
-    define('THISPAGE', $article['url']);
-}*/
 
 require_once(BASE_PATH . 'Application/Model/UrlsModel.php');
 $UrlsModel = new UrlsModel();

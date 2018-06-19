@@ -47,11 +47,13 @@
 
         <base target="_blank">
 
+    <?php if(THISPAGE === 'blog') : ?>
         <!-- Prefetching & prerendering -->
         <link rel="prefetch prev" href="<?php echo $prev['url']; ?>">
         <link rel="prefetch next" href="<?php echo $next['url']; ?>">
         <link rel="prerender" href="<?php echo $prev['url']; ?>">
         <link rel="prerender" href="<?php echo $next['url']; ?>">
+    <?php endif; ?>
     </head>
 
     <body>

@@ -9,7 +9,15 @@ require_once(BASE_PATH . 'Application/Controller/defaultController.php');
 
 class articleController extends DefaultController {
 
-	public function indexAction($article) {
+	public function indexAction($article = []) {
+
+		if(empty($article)) {
+
+			require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
+			$ArticlesModel = new ArticlesModel();
+			
+			$article = $ArticlesModel->getLastArticle(3)->fetch(PDO::FETCH_ASSOC);
+		}
 
 		$prev = '';
 		$next = '';
