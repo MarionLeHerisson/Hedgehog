@@ -45,4 +45,35 @@ class ArticleService {
 
         return $html;
     }
+
+    /**
+     * Return HTML articles list ordered by date and thematic
+     * @param array $allArticles
+     * @return string
+     */
+    public function formatProjectsTimeline($projects) {
+
+        $formattedList = '<ul class="timeline">';
+
+        foreach ($projects as $pos => $project) {
+            $formattedList .= '<li';
+            $formattedList .= $pos % 2 == 1 ? ' class="timeline-inverted"' : '';
+            $formattedList .= '><div class="timeline-badge">';
+            // ad period start & period end in database & article edition
+            // $formattedList .= $project['year_start'];
+            $formattedList .= '</div><div class="timeline-panel"><div class="timeline-heading"><h4 class="timeline-title">';
+            $formattedList .= $project['title'];
+            $formattedList .= '</h4><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>';
+            // $formattedList .= $project['day_start'] . ' ' . $project['month_start'] . ' ' . $project['year_start'];
+            // $formattedList .= ' - ' . $project['day_end'] . ' ' . $project['month_end'] . ' ' . $project['year_end'];
+            $formattedList .= '</small></p></div><div class="timeline-body"><p>';
+            $formattedList .= $project['intro'];
+            // Cut intro te have only a limited amount of characters.
+            $formattedList .= '</p></div></div></li>';
+        }
+
+        $formattedList .= '</ul>';
+
+        return $formattedList;
+    }
 }

@@ -29,6 +29,11 @@
         <!-- Bootstrap toggle button CSS -->
         <link href="css/bootstrap-toggle.min.css" rel="stylesheet" type="text/css">
 
+
+        <?php if(THISPAGE === 'projects') : ?>
+            <!-- Timeline css -->
+            <link href="css/timeline.css" rel="stylesheet" type="text/css">
+        <?php endif; ?>
         <!-- Google Fonts -->
 <!--        <link href='https://fonts.googleapis.com/css?family=Roboto:300italic,400italic,500,500italic,700,700italic,100,100italic,900,900italic,400,300' rel='stylesheet' type='text/css'>-->
 <!--        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300' rel='stylesheet' type='text/css'>-->
