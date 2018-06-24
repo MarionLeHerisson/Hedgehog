@@ -74,13 +74,18 @@ class ArticlesModel extends DefaultModel {
      * @param int $type
      * @return PDOStatement
      */
-    public function getAllArticles($type) {
+    public function getAllArticles($type, $statusId = null) {
         $db = $this->connectDb();
-        $query = $db->prepare("SELECT a.id, article_type_id, theme_id, author_id, title, intro, url_id, u.url, created_at " .
+
+        $queryString = "SELECT a.id, article_type_id, theme_id, author_id, title, intro, url_id, u.url, created_at, status_id " .
                                 "FROM " . $this->_name . " AS a " .
                                 "LEFT JOIN urls AS u ON u.id = a.url_id " .
-                                "WHERE is_deleted = 0 AND article_type_id = ? AND status_id = 1 " .
-                                "ORDER BY theme_id DESC;");
+                                "WHERE is_deleted = 0 AND article_type_id = ? ";
+        if($statusId != null) {
+            $queryString .= "AND status_id = " . $statusId;
+        }
+
+        $query = $db->prepare($queryString);
         $query->execute([$type]);
         return $query;
     }

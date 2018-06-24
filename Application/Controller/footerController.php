@@ -15,7 +15,7 @@ class footerController {
         require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
         $articlesManager = new ArticlesModel();
 
-        $articles =  $articlesManager->getAllArticles(5)->fetchAll(PDO::FETCH_ASSOC);
+        $articles =  $articlesManager->getAllArticles(5, 1)->fetchAll(PDO::FETCH_ASSOC);
         $footer = '';
 
         foreach($articles as $key => $article) {

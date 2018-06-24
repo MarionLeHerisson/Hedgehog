@@ -18,7 +18,7 @@ class ProjectsController extends DefaultController {
         require_once(BASE_PATH . 'Application/Model/Service/ArticleService.php');
         $articleService = new ArticleService();
 
-        $projects = $articlesManager->getAllArticles(2)->fetchAll(PDO::FETCH_ASSOC);
+        $projects = $articlesManager->getAllArticles(2, 1)->fetchAll(PDO::FETCH_ASSOC);
         $formattedList = $articleService->formatProjectsTimeline($projects);
 
         require_once(BASE_PATH . 'Application/View/basics/head.php');

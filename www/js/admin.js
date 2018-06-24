@@ -116,7 +116,9 @@ let createUrl = function () {
                 select = $('#list-type');
 
             $.each(res.articles, function (key, value) {
-                html += '<li><a href="' + value.url + '" target="_blank">' + value.title + '</a></li>'
+                html += '<li><span class="online-' + value.status_id +
+                        '">o </span><a href="' + value.url + '" target="_blank">'
+                        + value.title + '</a></li>'
             });
 
             html += '</ul>';

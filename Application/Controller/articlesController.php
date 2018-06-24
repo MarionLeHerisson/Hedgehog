@@ -16,7 +16,7 @@ class articlesController {
         require_once(BASE_PATH . 'Application/Model/Service/ArticleService.php');
         $articleService = new ArticleService();
 
-        $allArticles  = $articlesManager->getAllArticles(1)->fetchAll(PDO::FETCH_ASSOC);
+        $allArticles  = $articlesManager->getAllArticles(1, 1)->fetchAll(PDO::FETCH_ASSOC);
         $formattedList = $articleService->formatArticleList($allArticles);
 
         require_once(BASE_PATH . 'Application/View/basics/head.php');

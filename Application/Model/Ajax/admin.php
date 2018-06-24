@@ -236,7 +236,7 @@ class AdminAjax {
      *
      * @param integer $type
      */
-    public function displayAllArticles($type) {
+    public function displayAllArticles($type, $satus = null) {
 
         require_once(BASE_PATH . 'Application/Model/ArticlesModel.php');
         $articlesManager = new ArticlesModel();
@@ -244,7 +244,7 @@ class AdminAjax {
         $articles = [];
 
         if($type && $type > 0 && $type < 4) {
-            $articles = $articlesManager->getAllArticles($type)->fetchAll(PDO::FETCH_ASSOC);
+            $articles = $articlesManager->getAllArticles($type, $satus)->fetchAll(PDO::FETCH_ASSOC);
         }
 
         die(json_encode([
