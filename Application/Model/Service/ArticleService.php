@@ -39,7 +39,7 @@ class ArticleService {
                 $html .= '<h3>' . ucfirst($currentTheme) . '</h3>';
                 $html .= '<ul>';
             }
-            $html .= '<li><a href="' . $article['url'] . '" target="_self">' . $article['title'] . '</a>' .
+            $html .= '<li><a href="' . $article['url'] . '" target="_self" class="pull-left">' . $article['title'] . '</a>' .
                 '<span class="pull-right">' . date('l j F Y', strtotime($article['created_at'])) . '</span></li>';
         }
 
